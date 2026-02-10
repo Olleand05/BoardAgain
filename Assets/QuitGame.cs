@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuitGame : MonoBehaviour
 {
@@ -13,4 +14,10 @@ public class QuitGame : MonoBehaviour
     {
         
     }
+
+    public void QuitGameButton()
+    {
+        Application.Quit();
+    }
 }
+
