@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
@@ -12,5 +13,10 @@ public class StartGame : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void StartGameButton()
+    {
+        SceneManager.LoadScene("CombatScreen");
     }
 }
