@@ -3,7 +3,7 @@ using BoardAgain.Characters;
 
 namespace BoardAgain.Abilites.Examples
 {
-
+    [CreateAssetMenu(fileName = "NewExampleAbility", menuName = "Abilities/ExampleAbility1")]
     public class ExampleAbility1 : Abilities.Ability
     {
         public int damageAmount = 20;

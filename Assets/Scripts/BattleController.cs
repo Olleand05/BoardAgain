@@ -9,14 +9,20 @@ public class BattleController : MonoBehaviour
 
     public void PlayerUseAbility(int index)
     {
+        if (player == null) return;
+
         Ability ability = player.GetAbility(index);
 
+        
         if (ability != null)
-            return;
-
-        ability.ActivateAbility(player, enemy);
-
-        EndPlayerTurn();
+        {
+            ability.ActivateAbility(player, enemy);
+            EndPlayerTurn();
+        }
+        else
+        {
+            Debug.LogWarning("No ability found in CharacterData for " + player.name);
+        }
     }
 
     // Update is called once per frame
