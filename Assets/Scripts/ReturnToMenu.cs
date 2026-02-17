@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ReturnTOMenu : MonoBehaviour
+public class ReturnToMenu : MonoBehaviour
 {
     public void ExitToTitleScreen()
     {
