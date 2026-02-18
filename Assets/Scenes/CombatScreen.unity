@@ -2025,7 +2025,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1010805385}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1119432648}
+        m_TargetAssemblyTypeName: BattleController, Assembly-CSharp
+        m_MethodName: PlayerUseAbility
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1010805385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2243,6 +2255,8 @@ MonoBehaviour:
   player: {fileID: 1233700938}
   enemy: {fileID: 450150538}
   victoryPopUp: {fileID: 1818328501}
+  defeatPopUp: {fileID: 1024452385}
+  isPlayerTurn: 1
 --- !u!1 &1144803009 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5157986007994113309, guid: 755db51bc9bc5be4f921f27ac953237d, type: 3}
