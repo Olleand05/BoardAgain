@@ -15,6 +15,7 @@ namespace BoardAgain.Abilities
             int finalDamage = Mathf.RoundToInt(
                 baseDamage + caster.data.attack * attackMultiplier);
             target.TakeDamage(finalDamage);
+            Debug.Log($"{caster.name} used {name} on {target.name} for {finalDamage} damage! (Base: {baseDamage}, Attack: {caster.data.attack}, Multiplier: {attackMultiplier})");
         }
     }
 }
