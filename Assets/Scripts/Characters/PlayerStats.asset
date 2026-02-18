@@ -15,6 +15,7 @@ MonoBehaviour:
   characterName: Player
   maxHealth: 100
   attack: 20
-  defense: 40
+  defense: 0
   abilites:
   - {fileID: 11400000, guid: f2762be8c1eb866408f24c3e9a2a1f4f, type: 2}
+  - {fileID: 11400000, guid: 8c345a3456213c94882b7a775c9f575a, type: 2}

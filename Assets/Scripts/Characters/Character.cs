@@ -13,6 +13,8 @@ namespace BoardAgain.Characters
         private int attack;
         private int defense;
 
+        public HealthBarSlider healthBarSlider;
+
         private Ability[] equippedAbilities;
         private SynergyRule[] synergyRules;
 
@@ -29,6 +31,7 @@ namespace BoardAgain.Characters
             attack = data.attack;
             defense = data.defense;
             currentHealth = maxHealth;
+            healthBarSlider.SetMaxHealth(maxHealth);
         }
 
         public void CheckSynergy()
@@ -66,6 +69,7 @@ namespace BoardAgain.Characters
         {
             int damageTaken = Mathf.Max(damageAmount - defense, 0);
             currentHealth -= damageTaken;
+            healthBarSlider.SetHealth(currentHealth);
             return;
         }
 
