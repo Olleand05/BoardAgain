@@ -7,6 +7,9 @@ public class BattleController : MonoBehaviour
     public Character player;
     public Character enemy;
 
+    public GameObject victoryPopUp;
+
+
     public void PlayerUseAbility(int index)
     {
         if (player == null || enemy == null) return;
@@ -46,5 +49,7 @@ public class BattleController : MonoBehaviour
     void HandleVictory()
     {
         Debug.Log("The Enemy has died! Battle Over.");
+        victoryPopUp.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
