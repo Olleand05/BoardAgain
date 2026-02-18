@@ -69,7 +69,13 @@ namespace BoardAgain.Characters
         {
             int damageTaken = Mathf.Max(damageAmount - defense, 0);
             currentHealth -= damageTaken;
-            healthBarSlider.SetHealth(currentHealth);
+
+            currentHealth = Mathf.Max(currentHealth);
+
+            if (healthBarSlider != null)
+            {
+                healthBarSlider.SetHealth(currentHealth);
+            }
             return;
         }
 
@@ -93,6 +99,10 @@ namespace BoardAgain.Characters
                 return ActiveSynergyAbility;
 
             return null;
+        }
+        public bool IsCharacterDead()
+        {
+            return currentHealth <= 0;
         }
     }
 

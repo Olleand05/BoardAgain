@@ -9,19 +9,21 @@ public class BattleController : MonoBehaviour
 
     public void PlayerUseAbility(int index)
     {
-        if (player == null) return;
-
+        if (player == null || enemy == null) return;
         Ability ability = player.GetAbility(index);
 
         
         if (ability != null)
         {
             ability.ActivateAbility(player, enemy);
-            EndPlayerTurn();
-        }
-        else
-        {
-            Debug.LogWarning("No ability found in CharacterData for " + player.name);
+            if (enemy.IsCharacterDead())
+            {
+                HandleVictory();
+            }
+            else
+            {
+                EndPlayerTurn();
+            }
         }
     }
 
@@ -39,5 +41,10 @@ public class BattleController : MonoBehaviour
     void StartPlayerTurn()
     {
         //TODO: Implement any start of turn effects, such as regenerating health or applying buffs/debuffs
+    }
+
+    void HandleVictory()
+    {
+        Debug.Log("The Enemy has died! Battle Over.");
     }
 }
