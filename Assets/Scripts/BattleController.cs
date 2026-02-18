@@ -1,6 +1,7 @@
 using UnityEngine;
 using BoardAgain.Characters;
 using BoardAgain.Abilities;
+using System.Collections;
 
 public class BattleController : MonoBehaviour
 {
@@ -8,17 +9,19 @@ public class BattleController : MonoBehaviour
     public Character enemy;
 
     public GameObject victoryPopUp;
+    public bool isPlayerTurn = true;
 
 
     public void PlayerUseAbility(int index)
     {
-        if (player == null || enemy == null) return;
+        if (!isPlayerTurn || player == null || enemy == null) return;
+
         Ability ability = player.GetAbility(index);
 
-        
         if (ability != null)
         {
             ability.ActivateAbility(player, enemy);
+
             if (enemy.IsCharacterDead())
             {
                 HandleVictory();
@@ -33,17 +36,35 @@ public class BattleController : MonoBehaviour
     // Update is called once per frame
     void EndPlayerTurn()
     {
-        StartEnemyTurn();
+        isPlayerTurn = false;
+        StartCoroutine(EnemyTurnRoutine());
     }
 
-    void StartEnemyTurn()
+    IEnumerator EnemyTurnRoutine()
     {
-        StartPlayerTurn(); //TODO: Implement enemy AI to choose an ability and activate it
+        yield return new WaitForSeconds(1.5f);
+
+        Ability enemyAbility = enemy.GetAbility(0);
+
+        if (enemyAbility != null)
+        {
+            enemyAbility.ActivateAbility(enemy, player);
+
+            if (player.IsCharacterDead())
+            {
+                HandleDefeat();
+            }
+            else
+            {
+                StartPlayerTurn();
+            }
+        }
     }
+
 
     void StartPlayerTurn()
     {
-        //TODO: Implement any start of turn effects, such as regenerating health or applying buffs/debuffs
+        isPlayerTurn = true;
     }
 
     void HandleVictory()
@@ -51,5 +72,10 @@ public class BattleController : MonoBehaviour
         Debug.Log("The Enemy has died! Battle Over.");
         victoryPopUp.SetActive(true);
         Time.timeScale = 0f;
+    }
+    void HandleDefeat()
+    {
+        isPlayerTurn = false;
+        Debug.Log("You died! Battle Over.");
     }
 }
