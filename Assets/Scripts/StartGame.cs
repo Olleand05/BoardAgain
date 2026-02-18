@@ -17,6 +17,6 @@ public class StartGame : MonoBehaviour
 
     public void StartGameButton()
     {
-        SceneManager.LoadScene("CombatScreen");
+        SceneManager.LoadScene("MapScreen");
     }
 }
