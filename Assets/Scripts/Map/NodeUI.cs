@@ -11,6 +11,8 @@ public class NodeUI : MonoBehaviour
     private Button button;
     public GameObject activeIndicator;
 
+    public static bool isBossNext = false;
+
     public void Setup(NodeType type, bool canClick)
     {
         button = GetComponent<Button>();
@@ -68,11 +70,13 @@ public class NodeUI : MonoBehaviour
         if(nodeText.text == "Enemy")
         {
             Debug.Log("Loading Enemy Encounter...");
+            isBossNext = false;
             SceneManager.LoadScene("CombatScreen");
         }
         else if (nodeText.text == "Rest")
         {
             Debug.Log("Loading Rest Area...");
+            SceneManager.LoadScene("MapScreen");
 
             //TODO: Implement healing? restScreen? maybe just a pop up that heals the player and then returns to the map?
             //SceneManager.LoadScene("RestScreen");
@@ -80,6 +84,8 @@ public class NodeUI : MonoBehaviour
         else if (nodeText.text == "Boss")
         {
             Debug.Log("Loading Boss Fight...");
+            isBossNext = true;
+            SceneManager.LoadScene("CombatScreen");
         }
     }
 }

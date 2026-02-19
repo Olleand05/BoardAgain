@@ -30,8 +30,21 @@ namespace BoardAgain.Characters
             equippedAbilities = data.abilites;
             attack = data.attack;
             defense = data.defense;
+
+            if(gameObject.CompareTag("Enemy")&&NodeUI.isBossNext)
+            {
+                characterName = "BOSS "+characterName;
+                maxHealth *= 3;
+                attack += 10;
+
+                Debug.Log("Boss Spawned! Health and Attack increased.");
+            }
             currentHealth = maxHealth;
-            healthBarSlider.SetMaxHealth(maxHealth);
+
+            if (healthBarSlider != null)
+            {
+                healthBarSlider.SetMaxHealth(maxHealth);
+            }
         }
 
         public void CheckSynergy()
@@ -70,7 +83,7 @@ namespace BoardAgain.Characters
             int damageTaken = Mathf.Max(damageAmount - defense, 0);
             currentHealth -= damageTaken;
 
-            currentHealth = Mathf.Max(currentHealth);
+            currentHealth = Mathf.Max(currentHealth, 0);
 
             if (healthBarSlider != null)
             {

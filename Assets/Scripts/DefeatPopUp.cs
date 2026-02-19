@@ -27,7 +27,9 @@ public class DefeatPopUp : MonoBehaviour
     public void BoardAgain()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MapScreen");
+
+        MapManager.currentNodeIndex = 0;
+        SceneManager.LoadScene("TitleScreen");
     }
 
     public void QuitToMenu()
