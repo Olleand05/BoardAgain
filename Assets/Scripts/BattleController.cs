@@ -66,9 +66,13 @@ public class BattleController : MonoBehaviour
 
         for (int i = 0; i < abilityButtonTexts.Count; i++)
         {
+         
+            if (abilityButtonTexts[i] == null) continue;
+
             if (i < player.data.abilites.Length)
             {
-                abilityButtonTexts[i].text = player.data.abilites[i].name;
+                var ability = player.data.abilites[i];
+                abilityButtonTexts[i].text = (ability != null) ? ability.name : "Empty";
             }
             else
             {
@@ -76,13 +80,10 @@ public class BattleController : MonoBehaviour
             }
         }
 
-        if (player.ActiveSynergyAbility != null)
+        if (bonusAbilityButtonText != null)
         {
-            bonusAbilityButtonText.text = player.ActiveSynergyAbility.name;
-        }
-        else
-        {
-            bonusAbilityButtonText.text = "Locked";
+            bonusAbilityButtonText.text = (player.ActiveSynergyAbility != null) ?
+                player.ActiveSynergyAbility.name : "Locked";
         }
     }
 
