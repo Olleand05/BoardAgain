@@ -2,7 +2,8 @@ using UnityEngine;
 using BoardAgain.Characters;
 using BoardAgain.Abilities;
 using System.Collections;
-
+using System.Collections.Generic;
+using TMPro;
 public class BattleController : MonoBehaviour
 {
     public Character player;
@@ -11,8 +12,18 @@ public class BattleController : MonoBehaviour
     public GameObject victoryPopUp;
     public GameObject defeatPopUp;
 
+    [Header("UI Elements")]
+    public List<TextMeshProUGUI> abilityButtonTexts; 
+    public TextMeshProUGUI bonusAbilityButtonText;
+
     public bool isPlayerTurn = true;
     private bool hasUsedBonusAbilityThisTurn = false;
+
+
+    void Start()
+    {
+        UpdateAbilityButtonNames();
+    }
     public void PlayerUseAbility(int index)
     {
         if (!isPlayerTurn || player == null || enemy == null) return;
@@ -49,6 +60,32 @@ public class BattleController : MonoBehaviour
         }
     }
 
+    public void UpdateAbilityButtonNames()
+    {
+        if (player == null || player.data == null) return;
+
+        for (int i = 0; i < abilityButtonTexts.Count; i++)
+        {
+            if (i < player.data.abilites.Length)
+            {
+                abilityButtonTexts[i].text = player.data.abilites[i].name;
+            }
+            else
+            {
+                abilityButtonTexts[i].text = "---";
+            }
+        }
+
+        if (player.ActiveSynergyAbility != null)
+        {
+            bonusAbilityButtonText.text = player.ActiveSynergyAbility.name;
+        }
+        else
+        {
+            bonusAbilityButtonText.text = "Locked";
+        }
+    }
+
     // Update is called once per frame
     void EndPlayerTurn()
     {
@@ -82,6 +119,7 @@ public class BattleController : MonoBehaviour
     {
         hasUsedBonusAbilityThisTurn = false;
         isPlayerTurn = true;
+        UpdateAbilityButtonNames();
     }
 
     void HandleVictory()
