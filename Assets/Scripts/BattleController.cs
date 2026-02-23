@@ -1,9 +1,10 @@
-using UnityEngine;
-using BoardAgain.Characters;
 using BoardAgain.Abilities;
+using BoardAgain.Characters;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 public class BattleController : MonoBehaviour
 {
     public Character player;
@@ -15,6 +16,10 @@ public class BattleController : MonoBehaviour
     [Header("UI Elements")]
     public List<TextMeshProUGUI> abilityButtonTexts; 
     public TextMeshProUGUI bonusAbilityButtonText;
+
+    [Header("Battle Log")]
+    public GameObject logTextPrefab; 
+    public Transform logContentParent;
 
     public bool isPlayerTurn = true;
     private bool hasUsedBonusAbilityThisTurn = false;
@@ -32,13 +37,14 @@ public class BattleController : MonoBehaviour
 
         if (isBonusSlot && hasUsedBonusAbilityThisTurn)
         {
-            Debug.Log("You have already used your bonus ability this round!");
+            LogMessage("<color=yellow>Bonus ability already used this turn!</color>");
             return;
         }
         Ability ability = player.GetAbility(index);
 
         if (ability != null)
         {
+            LogMessage($"Player used <b>{ability.name}</b>!");
             ability.ActivateAbility(player, enemy);
 
             if (enemy.IsCharacterDead())
@@ -51,12 +57,34 @@ public class BattleController : MonoBehaviour
             if (isBonusSlot)
             {
                 hasUsedBonusAbilityThisTurn = true;
-                Debug.Log("Bonus Ability used! You can still use a regular ability.");
+                LogMessage("Bonus action complete. You can still use a regular ability.");
             }
             else
             {
                 EndPlayerTurn();
             }
+        }
+    }
+
+    public void LogMessage(string message)
+    {
+        if (logTextPrefab == null || logContentParent == null) return;
+
+        GameObject newLog = Instantiate(logTextPrefab, logContentParent);
+        newLog.transform.localScale = Vector3.one; 
+        newLog.GetComponent<TextMeshProUGUI>().text = message;
+
+        Canvas.ForceUpdateCanvases();
+        StartCoroutine(ScrollToBottom());
+    }
+
+    IEnumerator ScrollToBottom()
+    {
+        yield return new WaitForEndOfFrame();
+        ScrollRect scrollRect = logContentParent.GetComponentInParent<ScrollRect>();
+        if (scrollRect != null)
+        {
+            scrollRect.verticalNormalizedPosition = 0f;
         }
     }
 
@@ -102,6 +130,7 @@ public class BattleController : MonoBehaviour
 
         if (enemyAbility != null)
         {
+            LogMessage($"Enemy used <b>{enemyAbility.name}</b>!");
             enemyAbility.ActivateAbility(enemy, player);
 
             if (player.IsCharacterDead())
@@ -120,20 +149,21 @@ public class BattleController : MonoBehaviour
     {
         hasUsedBonusAbilityThisTurn = false;
         isPlayerTurn = true;
+        LogMessage("<color=green>Your turn!</color>");
         UpdateAbilityButtonNames();
     }
 
     void HandleVictory()
     {
         isPlayerTurn = false;
-        Debug.Log("The Enemy has died! Battle Over.");
+        LogMessage("<b>VICTORY!</b> The enemy was defeated.");
         victoryPopUp.SetActive(true);
         Time.timeScale = 0f;
     }
     void HandleDefeat()
     {
         isPlayerTurn = false;
-        Debug.Log("You died! Battle Over.");
+        LogMessage("<color=red>DEFEAT...</color> You have fallen in battle.");
         defeatPopUp.SetActive(true);
 
     }
