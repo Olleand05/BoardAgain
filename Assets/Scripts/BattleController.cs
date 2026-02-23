@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class BattleController : MonoBehaviour
 {
     public Character player;
@@ -14,36 +15,49 @@ public class BattleController : MonoBehaviour
     public GameObject defeatPopUp;
 
     [Header("UI Elements")]
-    public List<TextMeshProUGUI> abilityButtonTexts; 
+    // This list should now contain 4 TextMeshProUGUI elements in the Inspector
+    public List<TextMeshProUGUI> abilityButtonTexts;
     public TextMeshProUGUI bonusAbilityButtonText;
 
     [Header("Battle Log")]
-    public GameObject logTextPrefab; 
+    public GameObject logTextPrefab;
     public Transform logContentParent;
 
     public bool isPlayerTurn = true;
     private bool hasUsedBonusAbilityThisTurn = false;
 
-
     void Start()
     {
         UpdateAbilityButtonNames();
+        LogMessage("<color=green>Your turn!</color>");
+
     }
+
     public void PlayerUseAbility(int index)
     {
         if (!isPlayerTurn || player == null || enemy == null) return;
 
-        bool isBonusSlot = (index == player.data.abilites.Length-1);
+        
+        bool isBonusSlot = (index == 99);
 
-        if (isBonusSlot && hasUsedBonusAbilityThisTurn)
+        Ability ability;
+        if (isBonusSlot)
         {
-            LogMessage("<color=yellow>Bonus ability already used this turn!</color>");
-            return;
+            ability = player.data.bonusAbility;
         }
-        Ability ability = player.GetAbility(index);
+        else
+        {
+            ability = player.GetAbility(index);
+        }
 
         if (ability != null)
         {
+            if (isBonusSlot && hasUsedBonusAbilityThisTurn)
+            {
+                LogMessage("<color=yellow>You already used your bonus ability this turn!</color>");
+                return;
+            }
+
             LogMessage($"Player used <b>{ability.name}</b>!");
             ability.ActivateAbility(player, enemy);
 
@@ -53,7 +67,6 @@ public class BattleController : MonoBehaviour
                 return;
             }
 
-            bool isBonusAbility = (index == player.data.abilites.Length);
             if (isBonusSlot)
             {
                 hasUsedBonusAbilityThisTurn = true;
@@ -71,7 +84,7 @@ public class BattleController : MonoBehaviour
         if (logTextPrefab == null || logContentParent == null) return;
 
         GameObject newLog = Instantiate(logTextPrefab, logContentParent);
-        newLog.transform.localScale = Vector3.one; 
+        newLog.transform.localScale = Vector3.one;
         newLog.GetComponent<TextMeshProUGUI>().text = message;
 
         Canvas.ForceUpdateCanvases();
@@ -94,13 +107,12 @@ public class BattleController : MonoBehaviour
 
         for (int i = 0; i < abilityButtonTexts.Count; i++)
         {
-         
             if (abilityButtonTexts[i] == null) continue;
 
-            if (i < player.data.abilites.Length)
+            if (i < player.data.abilities.Length)
             {
-                var ability = player.data.abilites[i];
-                abilityButtonTexts[i].text = (ability != null) ? ability.name : "Empty";
+                Ability ab = player.data.abilities[i];
+                abilityButtonTexts[i].text = (ab != null) ? ab.name : "Empty Slot";
             }
             else
             {
@@ -110,15 +122,22 @@ public class BattleController : MonoBehaviour
 
         if (bonusAbilityButtonText != null)
         {
-            bonusAbilityButtonText.text = (player.ActiveSynergyAbility != null) ?
-                player.ActiveSynergyAbility.name : "Locked";
+            if (player.data.bonusAbility != null)
+            {
+                bonusAbilityButtonText.text = player.data.bonusAbility.name;
+            }
+            else
+            {
+                bonusAbilityButtonText.text = "Locked";
+            }
         }
     }
 
-    // Update is called once per frame
     void EndPlayerTurn()
     {
         isPlayerTurn = false;
+        LogMessage("<color=red>Enemy turn!</color>");
+
         StartCoroutine(EnemyTurnRoutine());
     }
 
@@ -144,7 +163,6 @@ public class BattleController : MonoBehaviour
         }
     }
 
-
     void StartPlayerTurn()
     {
         hasUsedBonusAbilityThisTurn = false;
@@ -160,11 +178,11 @@ public class BattleController : MonoBehaviour
         victoryPopUp.SetActive(true);
         Time.timeScale = 0f;
     }
+
     void HandleDefeat()
     {
         isPlayerTurn = false;
         LogMessage("<color=red>DEFEAT...</color> You have fallen in battle.");
         defeatPopUp.SetActive(true);
-
     }
 }
