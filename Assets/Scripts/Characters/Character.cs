@@ -27,7 +27,7 @@ namespace BoardAgain.Characters
         {
             characterName = data.characterName;
             maxHealth = data.maxHealth;
-            equippedAbilities = data.abilites;
+            equippedAbilities = data.abilities;
             attack = data.attack;
             defense = data.defense;
             currentHealth = maxHealth;
@@ -93,10 +93,21 @@ namespace BoardAgain.Characters
 
         public Ability GetAbility(int index)
         {
-            if (index < equippedAbilities.Length)
-                return equippedAbilities[index];
-            if (index == equippedAbilities.Length)
-                return ActiveSynergyAbility;
+
+            if (index == 99)
+            {
+                return data.bonusAbility;
+            }
+
+            if (index >= 0 && index < data.abilities.Length)
+            {
+                return data.abilities[index];
+            }
+
+            return null;
+
+            //if (index == equippedAbilities.Length)
+            //    return ActiveSynergyAbility;
 
             return null;
         }
