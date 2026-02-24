@@ -13,6 +13,8 @@ namespace BoardAgain.Characters
         private int attack;
         private int defense;
 
+        public Animator animator;
+
         public HealthBarSlider healthBarSlider;
 
         private Ability[] equippedAbilities;
@@ -64,6 +66,19 @@ namespace BoardAgain.Characters
                     return;
                 }
             }
+        }
+
+        public void PlayAttackAnimation()
+        {
+            animator.SetTrigger("MeleeAttack");
+        }
+
+        public void PlayDeathAnimation()
+        {
+
+         
+                animator.SetTrigger("Die");
+            
         }
 
         public int CountAbilitesWithTag(AbilityTag tag)
@@ -122,7 +137,7 @@ namespace BoardAgain.Characters
             //if (index == equippedAbilities.Length)
             //    return ActiveSynergyAbility;
 
-            return null;
+            
         }
         public bool IsCharacterDead()
         {

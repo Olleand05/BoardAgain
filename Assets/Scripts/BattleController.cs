@@ -59,6 +59,7 @@ public class BattleController : MonoBehaviour
             }
 
             LogMessage($"Player used <b>{ability.name}</b>!");
+            player.PlayAttackAnimation();
             ability.ActivateAbility(player, enemy);
 
             if (enemy.IsCharacterDead())
@@ -78,6 +79,7 @@ public class BattleController : MonoBehaviour
             }
         }
     }
+
 
     public void LogMessage(string message)
     {
@@ -150,6 +152,7 @@ public class BattleController : MonoBehaviour
         if (enemyAbility != null)
         {
             LogMessage($"Enemy used <b>{enemyAbility.name}</b>!");
+            enemy.PlayAttackAnimation();
             enemyAbility.ActivateAbility(enemy, player);
 
             if (player.IsCharacterDead())
@@ -175,14 +178,34 @@ public class BattleController : MonoBehaviour
     {
         isPlayerTurn = false;
         LogMessage("<b>VICTORY!</b> The enemy was defeated.");
+
+        StartCoroutine(VictoryRoutine());
+    }
+
+    IEnumerator VictoryRoutine()
+    {
+        enemy.PlayDeathAnimation();
+
+        yield return new WaitForSeconds(2.0f);
+
         victoryPopUp.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 0f; 
     }
 
     void HandleDefeat()
     {
         isPlayerTurn = false;
         LogMessage("<color=red>DEFEAT...</color> You have fallen in battle.");
+
+        StartCoroutine(DefeatRoutine());
+    }
+
+    IEnumerator DefeatRoutine()
+    {
+        player.PlayDeathAnimation();
+
+        yield return new WaitForSeconds(2.0f);
+
         defeatPopUp.SetActive(true);
     }
 }
