@@ -1468,11 +1468,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f155a7c99fb5a724687319286af722b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 450150541}
   healthBarSlider: {fileID: 715084464}
   data: {fileID: 11400000, guid: e6275c3e144bdc545a70ad7b7f22f62b, type: 2}
 --- !u!4 &450150540 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1438546959266459337, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+  m_PrefabInstance: {fileID: 1740836946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &450150541 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4540229000190281644, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
   m_PrefabInstance: {fileID: 1740836946}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &461019306
@@ -2747,11 +2753,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f155a7c99fb5a724687319286af722b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1233700941}
   healthBarSlider: {fileID: 1144803012}
   data: {fileID: 11400000, guid: e6275c3e144bdc545a70ad7b7f22f62b, type: 2}
 --- !u!4 &1233700940 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1438546959266459337, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+  m_PrefabInstance: {fileID: 356264051}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1233700941 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4540229000190281644, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
   m_PrefabInstance: {fileID: 356264051}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1360242233
