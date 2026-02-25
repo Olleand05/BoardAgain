@@ -10,7 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c41370626498834e874b802eb66b0ae, type: 3}
-  m_Name: Swordslash
+  m_Name: MarauderSynergy
   m_EditorClassIdentifier: 
+  abilityName: Skull Splitter
+  abilityDescription: Cleave your foe's skull with a well placed blow.
+  tag: 0
+  synergyRequirement: {fileID: 11400000, guid: 7f4d233a6d7731c4e8ff5c52fe5a519d, type: 2}
   baseDamage: 20
-  attackMultiplier: 1
+  attackMultiplier: 2.5
