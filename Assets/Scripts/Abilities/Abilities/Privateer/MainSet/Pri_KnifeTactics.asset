@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c41370626498834e874b802eb66b0ae, type: 3}
-  m_Name: Swordslash
+  m_Name: Pri_KnifeTactics
   m_EditorClassIdentifier: 
-  abilityName: Swordslash
-  abilityDescription: Slash your foes with a mighty swing.
-  tag: 0
-  baseDamage: 20
+  abilityName: Knife Tactics
+  abilityDescription: Throw a flurry of knives at your target.
+  abilityTag: 3
+  synergyRequirement: {fileID: 0}
+  baseDamage: 10
   attackMultiplier: 1.2

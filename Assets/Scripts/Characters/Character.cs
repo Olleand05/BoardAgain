@@ -22,6 +22,7 @@ namespace BoardAgain.Characters
 
         public Ability ActiveSynergyAbility { get; private set; }
         private AbilityTag? activeSynergyTag = null;
+        public int CurrentHealth => currentHealth;
 
         public CharacterData data;
 
@@ -86,7 +87,7 @@ namespace BoardAgain.Characters
             int count = 0;
             foreach (var ability in equippedAbilities)
             {
-                if (ability.GetAbilityTag == tag)
+                if (ability.abilityTag == tag)
                     count++;
             }
             return count;

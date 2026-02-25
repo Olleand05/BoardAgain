@@ -7,10 +7,10 @@ namespace BoardAgain.Abilities
     {   
         [Header("General Info")]
         public string abilityName;
+        [TextArea]
         public string abilityDescription;
-        public AbilityTag tag;
-
-        public AbilityTag GetAbilityTag => tag;
+        [Header("Ability Tag (Used as category)")]
+        public AbilityTag abilityTag = AbilityTag.None;
 
         [Header("Unlock Condition")]
         public SynergyRequirement synergyRequirement;
@@ -24,5 +24,13 @@ namespace BoardAgain.Abilities
         }
 
         public abstract void ActivateAbility(Character caster, Character target);
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            if (abilityTag == 0)
+                Debug.LogWarning($"Ability '{abilityName}' has no AbilityTag assigned!", this);
+        }
     }
+#endif
 }

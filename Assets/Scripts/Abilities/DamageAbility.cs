@@ -9,8 +9,8 @@ namespace BoardAgain.Abilities
     {
 
         [Header("Damage Settings")]
-        public int baseDamage;
-        public float attackMultiplier;
+        public int baseDamage = 10;
+        public float attackMultiplier = 1f;
 
         public override void ActivateAbility(Character caster, Character target)
         {

@@ -15,7 +15,7 @@ namespace BoardAgain.Abilities
             int count = 0;
             foreach (var ability in equippedAbilities)
             {
-                if (ability.GetAbilityTag == requiredTag)
+                if (ability.abilityTag == requiredTag)
                 {
                     count++;
                 }
