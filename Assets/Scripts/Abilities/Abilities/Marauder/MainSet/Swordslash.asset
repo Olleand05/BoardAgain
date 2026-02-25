@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75ed493e436726b4eac08924e818bf6b, type: 3}
-  m_Name: ExampleAbilityAsset
+  m_Script: {fileID: 11500000, guid: 7c41370626498834e874b802eb66b0ae, type: 3}
+  m_Name: Swordslash
   m_EditorClassIdentifier: 
-  damageAmount: 20
+  abilityName: Swordslash
+  abilityDescription: Slash your foes with a mighty swing.
+  tag: 0
+  baseDamage: 20
+  attackMultiplier: 1.2
