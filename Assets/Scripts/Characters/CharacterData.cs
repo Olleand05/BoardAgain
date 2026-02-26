@@ -15,6 +15,9 @@ public class CharacterData : ScriptableObject
     [Header("Ability Slots")]
     public Ability[] abilities;
 
+    [Header("Ability Slot Filters")]
+    public AbilityTag[] abilityTags;
+
     [Header("Bonus Slot")]
     public Ability bonusAbility;
 }
