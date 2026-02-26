@@ -36,8 +36,9 @@ namespace BoardAgain.Characters
 
             if(gameObject.CompareTag("Enemy")&&NodeUI.isBossNext)
             {
+                //TODO: Implement better boss scaling based on player progress and stats, not just a flat increase
                 characterName = "BOSS "+characterName;
-                maxHealth *= 3;
+                maxHealth *= 1;
                 attack += 10;
 
                 Debug.Log("Boss Spawned! Health and Attack increased.");

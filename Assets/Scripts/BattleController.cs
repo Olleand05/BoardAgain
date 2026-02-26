@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BattleController : MonoBehaviour
@@ -187,6 +188,13 @@ public class BattleController : MonoBehaviour
         enemy.PlayDeathAnimation();
 
         yield return new WaitForSeconds(2.0f);
+        MapManager.currentNodeIndex++;
+
+        if (NodeUI.isBossNext)
+        {
+            MapManager.currentNodeIndex = 0;
+            SceneManager.LoadScene("VictoryScreen");
+        }
 
         victoryPopUp.SetActive(true);
         Time.timeScale = 0f; 

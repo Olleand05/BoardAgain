@@ -24,7 +24,7 @@ public class DefeatPopUp : MonoBehaviour
         transform.localScale = Vector3.one;
     }
 
-    public void BoardAgain()
+    public void TryAgain()
     {
         Time.timeScale = 1f;
 
@@ -35,6 +35,7 @@ public class DefeatPopUp : MonoBehaviour
     public void QuitToMenu()
     {
         Time.timeScale = 1f;
+        MapManager.currentNodeIndex = 0;
         SceneManager.LoadScene("TitleScreen");
     }
 }
