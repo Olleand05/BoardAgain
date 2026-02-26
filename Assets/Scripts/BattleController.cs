@@ -58,7 +58,7 @@ public class BattleController : MonoBehaviour
                 return;
             }
 
-            LogMessage($"Player used <b>{ability.name}</b>!");
+            LogMessage($"Player used <b>{ability.abilityName}</b>!");
             player.PlayAttackAnimation();
             ability.ActivateAbility(player, enemy);
 
@@ -114,7 +114,7 @@ public class BattleController : MonoBehaviour
             if (i < player.data.abilities.Length)
             {
                 Ability ab = player.data.abilities[i];
-                abilityButtonTexts[i].text = (ab != null) ? ab.name : "Empty Slot";
+                abilityButtonTexts[i].text = (ab != null) ? ab.abilityName : "Empty Slot";
             }
             else
             {
@@ -126,7 +126,7 @@ public class BattleController : MonoBehaviour
         {
             if (player.data.bonusAbility != null)
             {
-                bonusAbilityButtonText.text = player.data.bonusAbility.name;
+                bonusAbilityButtonText.text = player.data.bonusAbility.abilityName;
             }
             else
             {
@@ -151,7 +151,7 @@ public class BattleController : MonoBehaviour
 
         if (enemyAbility != null)
         {
-            LogMessage($"Enemy used <b>{enemyAbility.name}</b>!");
+            LogMessage($"Enemy used <b>{enemyAbility.abilityName}</b>!");
             enemy.PlayAttackAnimation();
             enemyAbility.ActivateAbility(enemy, player);
 

@@ -44,25 +44,36 @@ public class CharacterDataEditor : Editor
             if (tagSelections == null || tagSelections.Length != characterData.abilities.Length)
                 tagSelections = new AbilityTag[characterData.abilities.Length];
 
+            SerializedProperty abilitiesProp = serializedObject.FindProperty("abilities");
+            SerializedProperty tagsProp = serializedObject.FindProperty("abilityTags");
+
+            while (tagsProp.arraySize < abilitiesProp.arraySize)
+                tagsProp.InsertArrayElementAtIndex(tagsProp.arraySize);
+
             // Draw each ability slot
-            for (int i = 0; i < characterData.abilities.Length; i++)
+            for (int i = 0; i < abilitiesProp.arraySize; i++)
             {
                 EditorGUILayout.BeginVertical("box");
 
-                // Tag filter
-                tagSelections[i] = (AbilityTag)EditorGUILayout.EnumPopup("Tag Filter", tagSelections[i]);
+                SerializedProperty tagProp = tagsProp.GetArrayElementAtIndex(i);
+                SerializedProperty abilityProp = abilitiesProp.GetArrayElementAtIndex(i);
 
-                // Filter abilities from the library
+                // Tag selector
+                EditorGUILayout.PropertyField(tagProp, new GUIContent("Tag Filter"));
+                AbilityTag selectedTag = (AbilityTag)tagProp.enumValueIndex;
+
+                // Filter from library
                 Ability[] filteredAbilities = characterData.abilityLibrary.allAbilities
-                    .Where(a => a.abilityTag == tagSelections[i])
+                    .Where(a => a.abilityTag == selectedTag)
                     .ToArray();
 
                 string[] abilityNames = filteredAbilities.Select(a => a.name).ToArray();
-                int currentIndex = System.Array.IndexOf(filteredAbilities, characterData.abilities[i]);
+                Ability currentAbility = abilityProp.objectReferenceValue as Ability;
+                int currentIndex = System.Array.IndexOf(filteredAbilities, currentAbility);
 
                 int newIndex = EditorGUILayout.Popup("Ability", currentIndex, abilityNames);
                 if (newIndex >= 0 && newIndex < filteredAbilities.Length)
-                    characterData.abilities[i] = filteredAbilities[newIndex];
+                    abilityProp.objectReferenceValue = filteredAbilities[newIndex];
 
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.Space();
@@ -83,6 +94,11 @@ public class CharacterDataEditor : Editor
         }
 
         serializedObject.ApplyModifiedProperties();
+
+        if (GUI.changed)
+        {
+        EditorUtility.SetDirty(target);
+        }
     }
 }
 #endif
