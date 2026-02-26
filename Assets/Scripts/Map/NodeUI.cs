@@ -65,7 +65,6 @@ public class NodeUI : MonoBehaviour
     public void OnNodeClicked()
     {
         Debug.Log("Node clicked: " + nodeText.text);
-        MapManager.currentNodeIndex++;
 
         if(nodeText.text == "Enemy")
         {
@@ -75,6 +74,7 @@ public class NodeUI : MonoBehaviour
         }
         else if (nodeText.text == "Rest")
         {
+            MapManager.currentNodeIndex++;
             Debug.Log("Loading Rest Area...");
             SceneManager.LoadScene("MapScreen");
 
