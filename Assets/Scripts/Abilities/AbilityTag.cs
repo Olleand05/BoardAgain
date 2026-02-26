@@ -4,7 +4,9 @@ namespace BoardAgain.Abilities
 {
     public enum AbilityTag //TODO: Expand
     {   
-        Synergy,
-        Marauder
+        None = 0,
+        Synergy = 1,
+        Marauder = 2,
+        Privateer = 3,
     }
 }
