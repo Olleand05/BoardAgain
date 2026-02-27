@@ -13,11 +13,34 @@ public class NodeUI : MonoBehaviour
 
     public static bool isBossNext = false;
 
+    private Vector3 baseScale;
+
+    private void Awake()
+    {
+        baseScale = transform.localScale;
+    }
+
     public void Setup(NodeType type, bool canClick)
     {
         button = GetComponent<Button>();
         nodeText.text = type.ToString();
         button.interactable = canClick;
+
+        switch (type)
+        {
+            case NodeType.Enemy:
+                baseScale = Vector3.one * 1.0f;
+                break;
+
+            case NodeType.Rest:
+                baseScale = Vector3.one * 1.1f;
+                break;
+
+            case NodeType.Boss:
+                baseScale = Vector3.one * 1.4f; // boss island bigger
+                break;
+        }
+        transform.localScale = baseScale;
 
         if (activeIndicator != null)
         {
@@ -26,12 +49,12 @@ public class NodeUI : MonoBehaviour
 
             if (nodeIcon != null)
             {
-                setColor(type);
+                //setColor(type);
 
                 if (!canClick)
                 {
                     Color tempColor = nodeIcon.color;
-                    tempColor.a = 0.3f;
+                    tempColor.a = 1f;
                     nodeIcon.color = tempColor;
                 }
             }
@@ -52,12 +75,12 @@ public class NodeUI : MonoBehaviour
     {
         if (button != null && button.interactable)
         {
-            float scale = 1f + Mathf.Sin(Time.time * 5f) * 0.1f;
-            transform.localScale = new Vector3(scale, scale, 1f);
+            float pulse = 1f + Mathf.Sin(Time.time * 5f) * 0.1f;
+            transform.localScale = baseScale*pulse;
         }
         else
         {
-            transform.localScale = Vector3.one;
+            transform.localScale = baseScale;
         }
     }
 

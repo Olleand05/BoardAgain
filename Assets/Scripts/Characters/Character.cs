@@ -38,7 +38,7 @@ namespace BoardAgain.Characters
             {
                 //TODO: Implement better boss scaling based on player progress and stats, not just a flat increase
                 characterName = "BOSS "+characterName;
-                maxHealth *= 1;
+                maxHealth += 50;
                 attack += 10;
 
                 Debug.Log("Boss Spawned! Health and Attack increased.");
