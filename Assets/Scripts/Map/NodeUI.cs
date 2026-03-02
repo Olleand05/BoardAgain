@@ -11,6 +11,10 @@ public class NodeUI : MonoBehaviour
     private Button button;
     public GameObject activeIndicator;
 
+    [SerializeField] private Sprite enemyIsland;
+    [SerializeField] private Sprite restIsland;
+    [SerializeField] private Sprite bossIsland;
+
     public static bool isBossNext = false;
 
     private Vector3 baseScale;
@@ -23,21 +27,26 @@ public class NodeUI : MonoBehaviour
     public void Setup(NodeType type, bool canClick)
     {
         button = GetComponent<Button>();
-        nodeText.text = type.ToString();
         button.interactable = canClick;
 
         switch (type)
         {
             case NodeType.Enemy:
                 baseScale = Vector3.one * 1.0f;
+                if (nodeIcon != null)
+                    nodeIcon.sprite = enemyIsland;
                 break;
 
             case NodeType.Rest:
                 baseScale = Vector3.one * 1.1f;
+                if (nodeIcon != null)
+                    nodeIcon.sprite = restIsland;
                 break;
 
             case NodeType.Boss:
-                baseScale = Vector3.one * 1.4f; // boss island bigger
+                baseScale = Vector3.one * 1.4f;
+                if (nodeIcon != null)
+                    nodeIcon.sprite = bossIsland;
                 break;
         }
         transform.localScale = baseScale;

@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e2cf18929ef43ae489d9f49f748edd9e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -146,9 +146,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f181f2e522c3284f9205c5022680187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeText: {fileID: 3438718812652983368}
+  nodeText: {fileID: 0}
   nodeIcon: {fileID: 2434408522865315749}
   activeIndicator: {fileID: 0}
+  enemyIsland: {fileID: 3551696318142229645, guid: 39201662bae2ec14e942b646969a3919, type: 3}
+  restIsland: {fileID: -8787107235404314360, guid: c0093c0192cc67f4eb0a4d3d074547f8, type: 3}
+  bossIsland: {fileID: -3529830837929950747, guid: 7cdbfb86dc615ef449ecc7489d280f3b, type: 3}
 --- !u!1 &4618021646745192470
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +217,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
