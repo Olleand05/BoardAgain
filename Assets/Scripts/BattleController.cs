@@ -11,7 +11,7 @@ public class BattleController : MonoBehaviour
 {
     public Character player;
     public Character enemy;
-
+    public TooltipManager tooltipManager;
     public GameObject victoryPopUp;
     public GameObject defeatPopUp;
 
@@ -112,28 +112,56 @@ public class BattleController : MonoBehaviour
         {
             if (abilityButtonTexts[i] == null) continue;
 
+            UnityEngine.UI.Button btn = abilityButtonTexts[i].GetComponentInParent<UnityEngine.UI.Button>();
+
             if (i < player.data.abilities.Length)
             {
                 Ability ab = player.data.abilities[i];
                 abilityButtonTexts[i].text = (ab != null) ? ab.abilityName : "Empty Slot";
+
+                ConfigureAbilityButton(abilityButtonTexts[i], ab, btn);
             }
             else
             {
                 abilityButtonTexts[i].text = "---";
+                if (btn != null) btn.interactable = false;
             }
         }
 
         if (bonusAbilityButtonText != null)
         {
-            if (player.data.bonusAbility != null)
+            UnityEngine.UI.Button bonusBtn = bonusAbilityButtonText.GetComponentInParent<UnityEngine.UI.Button>();
+            Ability bonusAb = player.data.bonusAbility;
+
+            if (bonusAb != null)
             {
-                bonusAbilityButtonText.text = player.data.bonusAbility.abilityName;
+                bonusAbilityButtonText.text = bonusAb.abilityName;
+                ConfigureAbilityButton(bonusAbilityButtonText, bonusAb, bonusBtn);
             }
             else
             {
                 bonusAbilityButtonText.text = "Locked";
+                if (bonusBtn != null) bonusBtn.interactable = false;
             }
         }
+    }
+
+    private void ConfigureAbilityButton(TMPro.TextMeshProUGUI textElement, Ability ability, UnityEngine.UI.Button btn)
+    {
+        if (btn == null) return;
+
+        if (ability == null)
+        {
+            btn.interactable = false;
+            return;
+        }
+
+        btn.interactable = true;
+
+        var trigger = btn.GetComponent<AbilityTooltipTrigger>();
+        if (trigger == null) trigger = btn.gameObject.AddComponent<AbilityTooltipTrigger>();
+
+        trigger.Setup(ability, player, tooltipManager);
     }
 
     void EndPlayerTurn()
