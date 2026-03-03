@@ -10,17 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2423bca223e71514dbc53045b2d93cc0, type: 3}
-  m_Name: PlayerStats
+  m_Name: testData
   m_EditorClassIdentifier: 
-  characterName: Player
+  characterName: a
   maxHealth: 100
   attack: 20
-  defense: 0
+  defense: 10
   abilityLibrary: {fileID: 11400000, guid: 9d8d63eb4f9ac9445b5ab5afcd3a5fbf, type: 2}
-  abilities:
-  - {fileID: 11400000, guid: 660b407b1e661e14f83b64f1d7199cac, type: 2}
-  - {fileID: 11400000, guid: 691a1d9c123c52d469d6ae30d3dea273, type: 2}
-  - {fileID: 11400000, guid: ebc0444b1cbe0b84eb5ace3d1007bcb1, type: 2}
-  - {fileID: 11400000, guid: 33b7cde39ac8c9a47b02fa00cc998b12, type: 2}
-  abilityTags: 02000000020000000200000002000000
-  bonusAbility: {fileID: 11400000, guid: 5eeb17f65060b204ebffa12321c32a3a, type: 2}
+  abilities: []
+  abilityTags: 02000000020000000200000000000000
+  bonusAbility: {fileID: 0}

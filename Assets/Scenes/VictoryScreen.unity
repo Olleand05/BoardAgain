@@ -461,8 +461,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1003153024}
-        m_TargetAssemblyTypeName: ReturnToMenu, Assembly-CSharp
-        m_MethodName: ExitToTitleScreen
+        m_TargetAssemblyTypeName: ReturnAndReset, Assembly-CSharp
+        m_MethodName: ResetRunAndReturn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -519,9 +519,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1003153018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1d7e8a015bf4584fb58dfa15e202c08, type: 3}
+  m_Script: {fileID: 11500000, guid: c2a686c83dcb5b84faf72454c8665aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAsset: {fileID: 11400000, guid: e6275c3e144bdc545a70ad7b7f22f62b, type: 2}
 --- !u!1 &1588532099
 GameObject:
   m_ObjectHideFlags: 0
