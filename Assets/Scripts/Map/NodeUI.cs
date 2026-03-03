@@ -19,6 +19,8 @@ public class NodeUI : MonoBehaviour
 
     private Vector3 baseScale;
 
+    private NodeType currentNodeType;
+
     private void Awake()
     {
         baseScale = transform.localScale;
@@ -26,7 +28,9 @@ public class NodeUI : MonoBehaviour
 
     public void Setup(NodeType type, bool canClick)
     {
+        currentNodeType = type;
         button = GetComponent<Button>();
+        //nodeText.text = type.ToString();
         button.interactable = canClick;
 
         switch (type)
@@ -96,15 +100,14 @@ public class NodeUI : MonoBehaviour
 
     public void OnNodeClicked()
     {
-        Debug.Log("Node clicked: " + nodeText.text);
 
-        if(nodeText.text == "Enemy")
+        if(currentNodeType==NodeType.Enemy)
         {
             Debug.Log("Loading Enemy Encounter...");
             isBossNext = false;
             SceneManager.LoadScene("CombatScreen");
         }
-        else if (nodeText.text == "Rest")
+        else if (currentNodeType==NodeType.Rest)
         {
             MapManager.currentNodeIndex++;
             Debug.Log("Loading Rest Area...");
@@ -113,7 +116,7 @@ public class NodeUI : MonoBehaviour
             //TODO: Implement healing? restScreen? maybe just a pop up that heals the player and then returns to the map?
             //SceneManager.LoadScene("RestScreen");
         }
-        else if (nodeText.text == "Boss")
+        else if (currentNodeType==NodeType.Boss)
         {
             Debug.Log("Loading Boss Fight...");
             isBossNext = true;

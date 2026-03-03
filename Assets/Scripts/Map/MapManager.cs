@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
@@ -33,4 +34,5 @@ public class MapManager : MonoBehaviour
             
         }
     }
+
 }
