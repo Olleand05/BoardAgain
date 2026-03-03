@@ -14,6 +14,7 @@ public class BattleController : MonoBehaviour
     public TooltipManager tooltipManager;
     public GameObject victoryPopUp;
     public GameObject defeatPopUp;
+    public BattleRewardManager rewardManager; 
 
     [Header("UI Elements")]
     // This list should now contain 4 TextMeshProUGUI elements in the Inspector
@@ -203,29 +204,43 @@ public class BattleController : MonoBehaviour
         UpdateAbilityButtonNames();
     }
 
+    // Change HandleVictory to call the routine
     void HandleVictory()
     {
         isPlayerTurn = false;
-        LogMessage("<b>VICTORY!</b> The enemy was defeated.");
-
+        LogMessage("<b>VICTORY!</b>");
         StartCoroutine(VictoryRoutine());
     }
 
     IEnumerator VictoryRoutine()
     {
         enemy.PlayDeathAnimation();
-
         yield return new WaitForSeconds(2.0f);
+
+        // Stop here to let the player choose a reward
+        if (rewardManager != null)
+        {
+            rewardManager.StartRewardProcess(player, this);
+        }
+        else
+        {
+            ShowFinalVictoryScreen();
+        }
+    }
+
+    // Move your map/popup logic into this separate function
+    public void ShowFinalVictoryScreen()
+    {
         MapManager.currentNodeIndex++;
 
         if (NodeUI.isBossNext)
         {
             MapManager.currentNodeIndex = 0;
-            SceneManager.LoadScene("VictoryScreen");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("VictoryScreen");
         }
 
         victoryPopUp.SetActive(true);
-        Time.timeScale = 0f; 
+        // Note: Do not use Time.timeScale = 0 if you want UI buttons to work
     }
 
     void HandleDefeat()
