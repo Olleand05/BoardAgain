@@ -23,4 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ebc0444b1cbe0b84eb5ace3d1007bcb1, type: 2}
   - {fileID: 11400000, guid: 33b7cde39ac8c9a47b02fa00cc998b12, type: 2}
   abilityTags: 02000000020000000200000002000000
-  bonusAbility: {fileID: 0}
+  bonusAbility: {fileID: 11400000, guid: 5eeb17f65060b204ebffa12321c32a3a, type: 2}
