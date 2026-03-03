@@ -74,7 +74,6 @@ public class BattleRewardManager : MonoBehaviour
         if (battleController != null)
         {
             // Debug here to see if it actually assigned
-            Debug.Log($"Ability Chosen: {battleController.player.data.bonusAbility.abilityName}");
 
             battleController.UpdateAbilityButtonNames();
         }
