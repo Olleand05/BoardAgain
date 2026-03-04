@@ -35,6 +35,7 @@ namespace BoardAgain.Battle
 
         public void QuitToMenu()
         {
+            MapManager.currentNodeIndex = 0;
             Time.timeScale = 1f;
             SceneManager.LoadScene("TitleScreen");
         }
