@@ -81,13 +81,13 @@ public class CharacterDataEditor : Editor
                     abilityNames[j + 1] = filteredAbilities[j].name;
 
 
-                
+
                 int currentIndex = System.Array.IndexOf(filteredAbilities, currentAbility);
 
                 int offsetIndex = currentIndex + 1; // +1 for "None" option
 
                 int newIndex = EditorGUILayout.Popup("Ability", offsetIndex, abilityNames);
-                
+
                 if (newIndex == 0)
                 {
                     abilityProp.objectReferenceValue = null;
@@ -107,10 +107,10 @@ public class CharacterDataEditor : Editor
                 .ToArray();
 
             string[] synergyNames = new string[synergyAbilities.Length + 1];
-                synergyNames[0] = "None";
+            synergyNames[0] = "None";
 
-                for (int j = 0; j < synergyAbilities.Length; j++)
-                    synergyNames[j + 1] = synergyAbilities[j].name;
+            for (int j = 0; j < synergyAbilities.Length; j++)
+                synergyNames[j + 1] = synergyAbilities[j].name;
 
             int bonusIndex = System.Array.IndexOf(synergyAbilities, characterData.bonusAbility);
 
@@ -132,7 +132,7 @@ public class CharacterDataEditor : Editor
 
         if (GUI.changed)
         {
-        EditorUtility.SetDirty(target);
+            EditorUtility.SetDirty(target);
         }
     }
 }
