@@ -19,8 +19,7 @@ MonoBehaviour:
   abilityLibrary: {fileID: 11400000, guid: 9d8d63eb4f9ac9445b5ab5afcd3a5fbf, type: 2}
   abilities:
   - {fileID: 11400000, guid: 660b407b1e661e14f83b64f1d7199cac, type: 2}
-  - {fileID: 11400000, guid: 691a1d9c123c52d469d6ae30d3dea273, type: 2}
   - {fileID: 11400000, guid: ebc0444b1cbe0b84eb5ace3d1007bcb1, type: 2}
+  - {fileID: 11400000, guid: 691a1d9c123c52d469d6ae30d3dea273, type: 2}
   - {fileID: 11400000, guid: 33b7cde39ac8c9a47b02fa00cc998b12, type: 2}
-  abilityTags: 02000000020000000200000002000000
   bonusAbility: {fileID: 0}

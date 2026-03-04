@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Runtime.CompilerServices;
+using BoardAgain.Core;
+using BoardAgain.Characters;
 
 public class NodeUI : MonoBehaviour
 {
@@ -105,22 +107,22 @@ public class NodeUI : MonoBehaviour
         {
             Debug.Log("Loading Enemy Encounter...");
             isBossNext = false;
-            SceneManager.LoadScene("CombatScreen");
+            SceneManager.LoadScene("CombatScreen", LoadSceneMode.Single);
         }
         else if (currentNodeType==NodeType.Rest)
         {
+            Character player = GameManager.Instance.playerCharacter;
+            player.Heal(player.maxHealth / 2);
+
             MapManager.currentNodeIndex++;
             Debug.Log("Loading Rest Area...");
             SceneManager.LoadScene("MapScreen");
-
-            //TODO: Implement healing? restScreen? maybe just a pop up that heals the player and then returns to the map?
-            //SceneManager.LoadScene("RestScreen");
         }
         else if (currentNodeType==NodeType.Boss)
         {
             Debug.Log("Loading Boss Fight...");
             isBossNext = true;
-            SceneManager.LoadScene("CombatScreen");
+            SceneManager.LoadScene("CombatScreen", LoadSceneMode.Single);
         }
     }
 }
