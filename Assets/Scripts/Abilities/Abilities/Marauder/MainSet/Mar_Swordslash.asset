@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Swordslash
   abilityDescription: Slash your foes with a mighty swing.
+  castSound: {fileID: 8300000, guid: 7cbd6cd765888ff418d01d98bd1ce9c2, type: 3}
   abilityTag: 2
   synergyRequirement: {fileID: 0}
   baseDamage: 1

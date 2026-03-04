@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Cunning Slash
   abilityDescription: Employ dirty tactics and stab your foe unknowingly.
+  castSound: {fileID: 8300000, guid: 3df9bbbc130ccb344af5f3fc793a630f, type: 3}
   abilityTag: 3
   synergyRequirement: {fileID: 0}
   baseDamage: 5

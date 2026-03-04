@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Overpower
   abilityDescription: Overpower your foe, showing a feat of strength.
+  castSound: {fileID: 8300000, guid: e82879725b40ce444bca27d19a75f42c, type: 3}
   abilityTag: 2
   synergyRequirement: {fileID: 0}
   baseDamage: 10

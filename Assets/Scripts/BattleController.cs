@@ -14,12 +14,14 @@ public class BattleController : MonoBehaviour
     public TooltipManager tooltipManager;
     public GameObject victoryPopUp;
     public GameObject defeatPopUp;
-    public BattleRewardManager rewardManager; 
+    public BattleRewardManager rewardManager;
 
     [Header("UI Elements")]
-    // This list should now contain 4 TextMeshProUGUI elements in the Inspector
     public List<TextMeshProUGUI> abilityButtonTexts;
     public TextMeshProUGUI bonusAbilityButtonText;
+
+    [Header("Audio")]
+    public AudioSource sfxSource;
 
     [Header("Battle Log")]
     public GameObject logTextPrefab;
@@ -32,14 +34,12 @@ public class BattleController : MonoBehaviour
     {
         UpdateAbilityButtonNames();
         LogMessage("<color=green>Your turn!</color>");
-
     }
 
     public void PlayerUseAbility(int index)
     {
         if (!isPlayerTurn || player == null || enemy == null) return;
 
-        
         bool isBonusSlot = (index == 99);
 
         Ability ability;
@@ -58,6 +58,12 @@ public class BattleController : MonoBehaviour
             {
                 LogMessage("<color=yellow>You already used your bonus ability this turn!</color>");
                 return;
+            }
+
+            // --- Play Ability Sound ---
+            if (sfxSource != null && ability.castSound != null)
+            {
+                sfxSource.PlayOneShot(ability.castSound);
             }
 
             LogMessage($"Player used <b>{ability.abilityName}</b>!");
@@ -81,7 +87,6 @@ public class BattleController : MonoBehaviour
             }
         }
     }
-
 
     public void LogMessage(string message)
     {
@@ -181,6 +186,12 @@ public class BattleController : MonoBehaviour
 
         if (enemyAbility != null)
         {
+            // Play Enemy Sound
+            if (sfxSource != null && enemyAbility.castSound != null)
+            {
+                sfxSource.PlayOneShot(enemyAbility.castSound);
+            }
+
             LogMessage($"Enemy used <b>{enemyAbility.abilityName}</b>!");
             enemy.PlayAttackAnimation();
             enemyAbility.ActivateAbility(enemy, player);
@@ -204,7 +215,6 @@ public class BattleController : MonoBehaviour
         UpdateAbilityButtonNames();
     }
 
-    // Change HandleVictory to call the routine
     void HandleVictory()
     {
         isPlayerTurn = false;
@@ -217,7 +227,6 @@ public class BattleController : MonoBehaviour
         enemy.PlayDeathAnimation();
         yield return new WaitForSeconds(2.0f);
 
-        // Stop here to let the player choose a reward
         if (rewardManager != null)
         {
             rewardManager.StartRewardProcess(player, this);
@@ -228,7 +237,6 @@ public class BattleController : MonoBehaviour
         }
     }
 
-    // Move your map/popup logic into this separate function
     public void ShowFinalVictoryScreen()
     {
         MapManager.currentNodeIndex++;
@@ -240,7 +248,6 @@ public class BattleController : MonoBehaviour
         }
 
         victoryPopUp.SetActive(true);
-        // Note: Do not use Time.timeScale = 0 if you want UI buttons to work
     }
 
     void HandleDefeat()
@@ -254,9 +261,7 @@ public class BattleController : MonoBehaviour
     IEnumerator DefeatRoutine()
     {
         player.PlayDeathAnimation();
-
         yield return new WaitForSeconds(2.0f);
-
         defeatPopUp.SetActive(true);
     }
 }
