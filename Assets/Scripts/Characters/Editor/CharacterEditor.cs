@@ -62,40 +62,19 @@ public class CharacterDataEditor : Editor
                 EditorGUILayout.PropertyField(tagProp, new GUIContent("Tag Filter"));
                 AbilityTag selectedTag = (AbilityTag)tagProp.enumValueIndex;
 
-                Ability currentAbility = abilityProp.objectReferenceValue as Ability;
-
-                if (currentAbility != null && currentAbility.abilityTag != selectedTag)
-                {
-                    abilityProp.objectReferenceValue = null;
-                }
-
                 // Filter from library
                 Ability[] filteredAbilities = characterData.abilityLibrary.allAbilities
                     .Where(a => a.abilityTag == selectedTag)
                     .ToArray();
 
-                string[] abilityNames = new string[filteredAbilities.Length + 1];
-                abilityNames[0] = "None";
-
-                for (int j = 0; j < filteredAbilities.Length; j++)
-                    abilityNames[j + 1] = filteredAbilities[j].name;
-
-
-                
+                string[] abilityNames = filteredAbilities.Select(a => a.name).ToArray();
+                Ability currentAbility = abilityProp.objectReferenceValue as Ability;
                 int currentIndex = System.Array.IndexOf(filteredAbilities, currentAbility);
 
-                int offsetIndex = currentIndex + 1; // +1 for "None" option
+                int newIndex = EditorGUILayout.Popup("Ability", currentIndex, abilityNames);
+                if (newIndex >= 0 && newIndex < filteredAbilities.Length)
+                    abilityProp.objectReferenceValue = filteredAbilities[newIndex];
 
-                int newIndex = EditorGUILayout.Popup("Ability", offsetIndex, abilityNames);
-                
-                if (newIndex == 0)
-                {
-                    abilityProp.objectReferenceValue = null;
-                }
-                else
-                {
-                    abilityProp.objectReferenceValue = filteredAbilities[newIndex - 1];
-                }
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.Space();
             }
@@ -106,26 +85,12 @@ public class CharacterDataEditor : Editor
                 .Where(a => a.abilityTag == AbilityTag.Synergy)
                 .ToArray();
 
-            string[] synergyNames = new string[synergyAbilities.Length + 1];
-                synergyNames[0] = "None";
-
-                for (int j = 0; j < synergyAbilities.Length; j++)
-                    synergyNames[j + 1] = synergyAbilities[j].name;
-
+            string[] synergyNames = synergyAbilities.Select(a => a.name).ToArray();
             int bonusIndex = System.Array.IndexOf(synergyAbilities, characterData.bonusAbility);
 
-            int offsetBonusIndex = bonusIndex + 1; // +1 for "None" option
-
-            int newBonusIndex = EditorGUILayout.Popup("Bonus Ability", offsetBonusIndex, synergyNames);
-
-            if (newBonusIndex == 0)
-            {
-                characterData.bonusAbility = null;
-            }
-            else
-            {
-                characterData.bonusAbility = synergyAbilities[newBonusIndex - 1];
-            }
+            int newBonusIndex = EditorGUILayout.Popup("Bonus Ability", bonusIndex, synergyNames);
+            if (newBonusIndex >= 0 && newBonusIndex < synergyAbilities.Length)
+                characterData.bonusAbility = synergyAbilities[newBonusIndex];
         }
 
         serializedObject.ApplyModifiedProperties();
