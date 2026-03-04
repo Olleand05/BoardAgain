@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Knife Tactics
   abilityDescription: Throw a flurry of knives at your target.
+  castSound: {fileID: 8300000, guid: 7cbd6cd765888ff418d01d98bd1ce9c2, type: 3}
   abilityTag: 3
   synergyRequirement: {fileID: 0}
   baseDamage: 10
