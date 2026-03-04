@@ -1,38 +1,45 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
-    public List<NodeType> path = new List<NodeType> 
-    { 
-        NodeType.Enemy,
-        NodeType.Rest, 
-        NodeType.Enemy, 
-        NodeType.Rest, 
-        NodeType.Boss
-    };
-
+    public List<NodeType> path = new List<NodeType> { NodeType.Enemy,NodeType.Rest, NodeType.Enemy,NodeType.Rest,NodeType.Boss};
     public GameObject nodePrefab;
     public Transform contentParent;
+    public ScrollRect scrollRect; 
 
     public static int currentNodeIndex = 0;
 
     void Start()
     {
         GenerateMap();
+        StartCoroutine(CenterOnCurrentNode());
     }
 
     void GenerateMap()
     {
+        foreach (Transform child in contentParent) { Destroy(child.gameObject); }
+
         for (int i = 0; i < path.Count; i++)
         {
             GameObject newNode = Instantiate(nodePrefab, contentParent);
             NodeUI nodeUI = newNode.GetComponent<NodeUI>();
             bool isInteractable = (i == currentNodeIndex);
             nodeUI.Setup(path[i], isInteractable);
-            
         }
     }
 
+    IEnumerator CenterOnCurrentNode()
+    {
+        yield return new WaitForEndOfFrame();
+
+        if (path.Count > 1)
+        {
+            float targetValue = (float)currentNodeIndex / (path.Count - 1);
+
+            scrollRect.verticalNormalizedPosition = targetValue;
+        }
+    }
 }
