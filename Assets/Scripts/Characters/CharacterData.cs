@@ -13,11 +13,8 @@ public class CharacterData : ScriptableObject
     public AbilityLibrary abilityLibrary;
 
     [Header("Ability Slots")]
-    public Ability[] abilities;
-
-    [Header("Ability Slot Filters")]
-    public AbilityTag[] abilityTags;
+    public Ability[] abilities = new Ability[4];
 
     [Header("Bonus Slot")]
-    public Ability bonusAbility;
+    public Ability bonusAbility = null;
 }

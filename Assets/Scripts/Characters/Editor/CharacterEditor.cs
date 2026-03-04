@@ -9,6 +9,22 @@ public class CharacterDataEditor : Editor
 {
     private AbilityTag[] tagSelections;
 
+    private void OnEnable()
+    {
+        CharacterData characterData = (CharacterData)target;
+
+        if (tagSelections == null || tagSelections.Length != characterData.abilities.Length)
+        {
+            tagSelections = new AbilityTag[characterData.abilities.Length];
+
+            for (int i = 0; i < characterData.abilities.Length; i++)
+            {
+                Ability ab = characterData.abilities[i];
+                tagSelections[i] = (ab != null) ? ab.abilityTag : AbilityTag.None;
+            }
+        }
+    }
+
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
@@ -45,34 +61,24 @@ public class CharacterDataEditor : Editor
                 tagSelections = new AbilityTag[characterData.abilities.Length];
 
             SerializedProperty abilitiesProp = serializedObject.FindProperty("abilities");
-            SerializedProperty tagsProp = serializedObject.FindProperty("abilityTags");
-
-            while (tagsProp.arraySize < abilitiesProp.arraySize)
-                tagsProp.InsertArrayElementAtIndex(tagsProp.arraySize);
 
             // Draw each ability slot
             for (int i = 0; i < abilitiesProp.arraySize; i++)
             {
                 EditorGUILayout.BeginVertical("box");
 
-                SerializedProperty tagProp = tagsProp.GetArrayElementAtIndex(i);
-                SerializedProperty abilityProp = abilitiesProp.GetArrayElementAtIndex(i);
+                
+                tagSelections[i] = (AbilityTag)EditorGUILayout.EnumPopup("Tag Filter", tagSelections[i]);
 
-                // Tag selector
-                EditorGUILayout.PropertyField(tagProp, new GUIContent("Tag Filter"));
-                AbilityTag selectedTag = (AbilityTag)tagProp.enumValueIndex;
+                Ability currentAbility = abilitiesProp.GetArrayElementAtIndex(i).objectReferenceValue as Ability;
 
-                Ability currentAbility = abilityProp.objectReferenceValue as Ability;
-
-                if (currentAbility != null && currentAbility.abilityTag != selectedTag)
-                {
-                    abilityProp.objectReferenceValue = null;
-                }
+                if (currentAbility != null && currentAbility.abilityTag != tagSelections[i])
+                    abilitiesProp.GetArrayElementAtIndex(i).objectReferenceValue = null;
 
                 // Filter from library
                 Ability[] filteredAbilities = characterData.abilityLibrary.allAbilities
-                    .Where(a => a.abilityTag == selectedTag)
-                    .ToArray();
+                    .Where(a => a.abilityTag == tagSelections[i])
+                    .ToArray();         
 
                 string[] abilityNames = new string[filteredAbilities.Length + 1];
                 abilityNames[0] = "None";
@@ -90,11 +96,11 @@ public class CharacterDataEditor : Editor
 
                 if (newIndex == 0)
                 {
-                    abilityProp.objectReferenceValue = null;
+                    abilitiesProp.GetArrayElementAtIndex(i).objectReferenceValue = null;
                 }
                 else
                 {
-                    abilityProp.objectReferenceValue = filteredAbilities[newIndex - 1];
+                    abilitiesProp.GetArrayElementAtIndex(i).objectReferenceValue = filteredAbilities[newIndex - 1];
                 }
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.Space();
@@ -131,9 +137,8 @@ public class CharacterDataEditor : Editor
         serializedObject.ApplyModifiedProperties();
 
         if (GUI.changed)
-        {
             EditorUtility.SetDirty(target);
-        }
+        
     }
 }
 #endif

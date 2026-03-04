@@ -1,27 +1,34 @@
 using BoardAgain.Abilities;
 using BoardAgain.Abilities.Synergy;
+using UnityEditor.Build.Content;
 using UnityEngine;
+using BoardAgain.Core;
 
 namespace BoardAgain.Characters
 {
 
-    public abstract class Character : MonoBehaviour
+    public class Character : MonoBehaviour
     {
-        private string characterName;
-        private int maxHealth;
-        private int currentHealth;
-        private int attack;
-        private int defense;
+        [HideInInspector]
+        public string characterName;
+        [HideInInspector]
+        public int maxHealth;
+        [HideInInspector]
+        public int currentHealth;
+        [HideInInspector]
+        public int attack;
+        [HideInInspector]
+        public int defense;
 
         public Animator animator;
 
         public HealthBarSlider healthBarSlider;
 
-        private Ability[] equippedAbilities;
-        private SynergyRule[] synergyRules;
+        [HideInInspector]
+        public Ability[] equippedAbilities;
+        [HideInInspector]
+        public Ability bonusAbility;
 
-        public Ability ActiveSynergyAbility { get; private set; }
-        private AbilityTag? activeSynergyTag = null;
         public int CurrentHealth => currentHealth;
 
         public CharacterData data;
@@ -33,8 +40,9 @@ namespace BoardAgain.Characters
             equippedAbilities = data.abilities;
             attack = data.attack;
             defense = data.defense;
+            bonusAbility = data.bonusAbility;
 
-            if(gameObject.CompareTag("Enemy")&&NodeUI.isBossNext)
+            if (gameObject.CompareTag("Enemy")&&NodeUI.isBossNext)
             {
                 //TODO: Implement better boss scaling based on player progress and stats, not just a flat increase
                 characterName = "BOSS "+characterName;
@@ -51,23 +59,21 @@ namespace BoardAgain.Characters
             }
         }
 
-        public void CheckSynergy()
+        private void Start()
+        {   
+            if (gameObject.CompareTag("Player"))
+                GameManager.Instance.RegisterPlayer(this);
+        }
+        public void InitializeFrom(Character source)
         {
-            foreach (var rule in synergyRules)
-            {
-                int count = CountAbilitesWithTag(rule.requiredTag);
+            if (source == null) return;
 
-                bool isNewSynergy =
-                    count >= rule.requiredCount &&
-                    activeSynergyTag != rule.requiredTag;
+            this.data = source.data;
 
-                if (isNewSynergy)
-                {
-                    ActiveSynergyAbility = rule.unlockedAbility;
-                    activeSynergyTag = rule.requiredTag;
-                    return;
-                }
-            }
+            this.equippedAbilities = source.equippedAbilities;
+            this.bonusAbility = source.bonusAbility;
+
+            this.currentHealth = source.currentHealth;
         }
 
         public void PlayAttackAnimation()
@@ -75,25 +81,19 @@ namespace BoardAgain.Characters
             animator.SetTrigger("MeleeAttack");
         }
 
-        public void PlayDeathAnimation()
+        public void HandleDeath()
         {
-
-         
-                animator.SetTrigger("Die");
-            
+            healthBarSlider.gameObject.SetActive(false);
+            animator.SetTrigger("Die");
         }
 
-        public int CountAbilitesWithTag(AbilityTag tag)
+        private void UpdateHealthBar()
         {
-            int count = 0;
-            foreach (var ability in equippedAbilities)
+            if (healthBarSlider != null)
             {
-                if (ability.abilityTag == tag)
-                    count++;
+                healthBarSlider.SetHealth(currentHealth);
             }
-            return count;
         }
-
 
         public void TakeDamage(int damageAmount)
         {
@@ -102,16 +102,14 @@ namespace BoardAgain.Characters
 
             currentHealth = Mathf.Max(currentHealth, 0);
 
-            if (healthBarSlider != null)
-            {
-                healthBarSlider.SetHealth(currentHealth);
-            }
+            UpdateHealthBar();
             return;
         }
 
         public void Heal(int healAmount)
         {
             currentHealth = Mathf.Min(currentHealth + healAmount, maxHealth);
+            UpdateHealthBar();
             return;
         }
 
@@ -121,26 +119,16 @@ namespace BoardAgain.Characters
             return;
         }
 
-        public Ability GetAbility(int index)
+        public Ability GetMainAbility(int index)
         {
-
-            if (index == 99)
+            if (index >= 0 && index < equippedAbilities.Length)
             {
-                return data.bonusAbility;
+                return equippedAbilities[index];
             }
 
-            if (index >= 0 && index < data.abilities.Length)
-            {
-                return data.abilities[index];
-            }
-
-            return null;
-
-            //if (index == equippedAbilities.Length)
-            //    return ActiveSynergyAbility;
-
-            
+            return null;   
         }
+
         public bool IsCharacterDead()
         {
             return currentHealth <= 0;

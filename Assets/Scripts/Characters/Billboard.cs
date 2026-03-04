@@ -2,21 +2,20 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-    private Transform camTransform;
+    private Camera cam;
 
     void Start()
     {
         if (Camera.main != null)
         {
-            camTransform = Camera.main.transform;
+            cam = Camera.main;
         }
     }
 
     void LateUpdate()
     {
-        if (camTransform != null)
-        {
-            transform.LookAt(transform.position + camTransform.forward);
-        }
+        if (cam == null) return;
+
+        transform.LookAt(transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
     }
 }
