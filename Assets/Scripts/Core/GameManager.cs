@@ -26,12 +26,6 @@ namespace BoardAgain.Core
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
-            if (playerCharacter == null)
-            {
-                playerCharacter = Instantiate(playerPrefab);
-                DontDestroyOnLoad(playerCharacter.gameObject);
-            }
         }
 
         public void RegisterPlayer(Character character)
@@ -42,6 +36,30 @@ namespace BoardAgain.Core
         public void RegisterBattle(BattleController battle)
         {
             battleController = battle;
+        }
+
+        public void InitalizePlayer()
+        {
+            if (playerCharacter != null) return;
+
+            playerCharacter = Instantiate(playerPrefab);
+            DontDestroyOnLoad(playerCharacter.gameObject);
+        }
+
+        public void ResetGame()
+        {
+            // Clean up player character
+            if (playerCharacter != null)
+            {
+                Destroy(playerCharacter.gameObject);
+                playerCharacter = null;
+            }
+            // Clean up battle controller
+            if (battleController != null)
+            {
+                Destroy(battleController.gameObject);
+                battleController = null;
+            }
         }
     }
 }

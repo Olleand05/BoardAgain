@@ -1,3 +1,4 @@
+using BoardAgain.Core;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -32,6 +33,7 @@ namespace BoardAgain.Battle
 
             MapManager.currentNodeIndex = 0;
             SceneManager.LoadScene("TitleScreen");
+            GameManager.Instance.ResetGame();
         }
 
         public void QuitToMenu()
@@ -39,6 +41,7 @@ namespace BoardAgain.Battle
             Time.timeScale = 1f;
             MapManager.currentNodeIndex = 0;
             SceneManager.LoadScene("TitleScreen");
+            GameManager.Instance.ResetGame();
         }
     }
 }

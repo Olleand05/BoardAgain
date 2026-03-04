@@ -239,7 +239,7 @@ namespace BoardAgain.Battle
 
         IEnumerator VictoryRoutine()
         {
-            enemy.PlayDeathAnimation();
+            enemy.HandleDeath();
             yield return new WaitForSeconds(2.0f);
 
             // Stop here to let the player choose a reward
@@ -278,7 +278,7 @@ namespace BoardAgain.Battle
 
         IEnumerator DefeatRoutine()
         {
-            player.PlayDeathAnimation();
+            player.HandleDeath();
 
             yield return new WaitForSeconds(2.0f);
 

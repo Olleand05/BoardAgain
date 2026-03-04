@@ -5,11 +5,11 @@ namespace BoardAgain.Core
 {
     public class ReturnToMenu : MonoBehaviour
     {
-        [Header("Run Reset Settings")]
-        public CharacterData playerAsset;
         public void ExitToTitleScreen()
         {
+            MapManager.currentNodeIndex = 0;
             SceneManager.LoadScene("TitleScreen");
+            GameManager.Instance.ResetGame();
         }
     }
 }

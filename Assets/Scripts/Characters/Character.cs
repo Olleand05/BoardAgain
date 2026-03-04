@@ -81,12 +81,10 @@ namespace BoardAgain.Characters
             animator.SetTrigger("MeleeAttack");
         }
 
-        public void PlayDeathAnimation()
+        public void HandleDeath()
         {
-
-         
-                animator.SetTrigger("Die");
-            
+            healthBarSlider.gameObject.SetActive(false);
+            animator.SetTrigger("Die");
         }
 
         private void UpdateHealthBar()
