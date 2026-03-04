@@ -4,11 +4,15 @@ using UnityEngine;
 namespace BoardAgain.Abilities
 {
     public abstract class Ability : ScriptableObject
-    {   
+    {
         [Header("General Info")]
         public string abilityName;
         [TextArea]
         public string abilityDescription;
+
+        [Header("Audio")]
+        public AudioClip castSound;
+
         [Header("Ability Tag (Used as category)")]
         public AbilityTag abilityTag = AbilityTag.None;
 
@@ -31,6 +35,6 @@ namespace BoardAgain.Abilities
             if (abilityTag == 0)
                 Debug.LogWarning($"Ability '{abilityName}' has no AbilityTag assigned!", this);
         }
-    }
 #endif
+    }
 }
