@@ -21,7 +21,7 @@ namespace BoardAgain.Abilities
         public override void ActivateAbility(Character caster, Character target)
         {
             int statChange = statMultiplier;
-            caster.ApplyBuff(statChange);
+            caster.ApplyBuff(stat, statChange);
             Debug.Log($"{caster.name} used {name} and changed {stat} by {statChange}! (Old: {caster.attack}, New: {caster.attack*statChange}");
         }
 
