@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Pri_Shield
   m_EditorClassIdentifier: 
   abilityName: Shield
-  abilityDescription: Shield yourself for 10 damage! (increases with defense)
+  abilityDescription: Shield yourself for 30 damage! (increases with defense)
   castSound: {fileID: 0}
   abilityTag: 3
   synergyRequirement: {fileID: 0}
-  baseShield: 10
+  baseShield: 30
