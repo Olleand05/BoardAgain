@@ -3371,7 +3371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d7e8a015bf4584fb58dfa15e202c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAsset: {fileID: 0}
 --- !u!4 &1119432647
 Transform:
   m_ObjectHideFlags: 0
@@ -3406,13 +3405,13 @@ MonoBehaviour:
   victoryPopUp: {fileID: 1818328501}
   defeatPopUp: {fileID: 1024452385}
   rewardManager: {fileID: 550321916}
+  sfxSource: {fileID: 116178889}
   abilityButtonTexts:
   - {fileID: 217885145}
   - {fileID: 1609773345}
   - {fileID: 1812754603}
   - {fileID: 174001938}
   bonusAbilityButtonText: {fileID: 1599467565}
-  sfxSource: {fileID: 116178889}
   logTextPrefab: {fileID: 984656274856757233, guid: c3a4b23d192da4c4ca650977fcba8b1e, type: 3}
   logContentParent: {fileID: 562902069}
   isPlayerTurn: 1

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using BoardAgain.Core;
 
 namespace BoardAgain.Battle
 {
@@ -38,6 +39,7 @@ namespace BoardAgain.Battle
             MapManager.currentNodeIndex = 0;
             Time.timeScale = 1f;
             SceneManager.LoadScene("TitleScreen");
+            GameManager.Instance.ResetGame();
         }
 
     }

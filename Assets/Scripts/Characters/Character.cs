@@ -3,6 +3,7 @@ using BoardAgain.Abilities.Synergy;
 using UnityEditor.Build.Content;
 using UnityEngine;
 using BoardAgain.Core;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace BoardAgain.Characters
 {
@@ -19,6 +20,8 @@ namespace BoardAgain.Characters
         public int attack;
         [HideInInspector]
         public int defense;
+        [HideInInspector]
+        public int shield;
 
         public Animator animator;
 
@@ -98,7 +101,15 @@ namespace BoardAgain.Characters
         public void TakeDamage(int damageAmount)
         {
             int damageTaken = Mathf.Max(damageAmount - defense, 0);
-            currentHealth -= damageTaken;
+
+            //Added for shield mechanic, shield absorbs damage before health
+
+            int absorbed = Mathf.Min(shield, damageTaken);
+            shield -= absorbed;
+
+            int remaining = damageTaken - absorbed;
+
+            currentHealth -= remaining;
 
             currentHealth = Mathf.Max(currentHealth, 0);
 
@@ -111,6 +122,25 @@ namespace BoardAgain.Characters
             currentHealth = Mathf.Min(currentHealth + healAmount, maxHealth);
             UpdateHealthBar();
             return;
+        }
+
+        public void GainShield(int amount)
+        {
+            shield += Mathf.Max(0, amount);
+        }
+
+        public void ApplyBuff(BuffAbility.StatType stat, int multiplier)
+        {
+            switch (stat)
+            {
+                case BuffAbility.StatType.Attack:
+                    attack *= multiplier;
+                    break;
+
+                case BuffAbility.StatType.Defense:
+                    defense *= multiplier;
+                    break;
+            }
         }
 
         public void UseAbility(int index, Character target)

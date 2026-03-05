@@ -26,6 +26,9 @@ namespace BoardAgain.Battle
         public GameObject defeatPopUp;
         public BattleRewardManager rewardManager;
 
+        [Header("Audio")]
+        public AudioSource sfxSource;
+
         [Header("UI Elements")]
         // This list should now contain 4 TextMeshProUGUI elements in the Inspector
         public List<TextMeshProUGUI> abilityButtonTexts;
@@ -67,6 +70,12 @@ namespace BoardAgain.Battle
             Ability ability = player.GetMainAbility(index);
 
             if (ability == null) return;
+
+            if (sfxSource != null && ability.castSound != null)
+            {
+                sfxSource.PlayOneShot(ability.castSound);
+            }
+
 
             LogMessage($"Player used <b>{ability.abilityName}</b>!");
             player.PlayAttackAnimation();
@@ -111,6 +120,8 @@ namespace BoardAgain.Battle
         public void LogMessage(string message)
         {
             if (logTextPrefab == null || logContentParent == null) return;
+
+            
 
             GameObject newLog = Instantiate(logTextPrefab, logContentParent);
             newLog.transform.localScale = Vector3.one;
@@ -204,9 +215,16 @@ namespace BoardAgain.Battle
 
             Ability enemyAbility = enemy.GetMainAbility(0);
 
-            if (enemyAbility != null)
+            if (enemyAbility == null) yield break;
+            
+            LogMessage($"Enemy used <b>{enemyAbility.abilityName}</b>!");
+                
+        
+            // Play Enemy Sound
+            if (sfxSource != null && enemyAbility.castSound != null)
             {
-                LogMessage($"Enemy used <b>{enemyAbility.abilityName}</b>!");
+                sfxSource.PlayOneShot(enemyAbility.castSound);
+            }
                 enemy.PlayAttackAnimation();
                 enemyAbility.ActivateAbility(enemy, player);
 
@@ -218,7 +236,7 @@ namespace BoardAgain.Battle
                 {
                     StartPlayerTurn();
                 }
-            }
+            
         }
 
         void StartPlayerTurn()
