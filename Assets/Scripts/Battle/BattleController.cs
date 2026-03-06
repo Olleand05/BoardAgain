@@ -45,6 +45,9 @@ namespace BoardAgain.Battle
         {
 
             player = GameManager.Instance.playerCharacter;
+            //Reset player stats to base values
+            player.attack=player.data.attack;
+            player.defense = player.data.defense;
 
             if (playerVisual != null)
             {
