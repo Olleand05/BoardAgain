@@ -8,5 +8,6 @@ namespace BoardAgain.Abilities
         Synergy = 1,
         Marauder = 2,
         Privateer = 3,
+        Buccaneer = 4,
     }
 }

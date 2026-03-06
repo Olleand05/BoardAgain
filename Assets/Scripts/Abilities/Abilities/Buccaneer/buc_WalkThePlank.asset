@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c41370626498834e874b802eb66b0ae, type: 3}
-  m_Name: Mar_Syn_SkullSplitter
+  m_Name: buc_WalkThePlank
   m_EditorClassIdentifier: 
-  abilityName: Skull Splitter
-  abilityDescription: Cleave your foe's skull with a well placed blow.
+  abilityName: Walk The Plank
+  abilityDescription: Force your target to walk the plank
   castSound: {fileID: 0}
-  abilityTag: 1
-  synergyRequirement: {fileID: 11400000, guid: 7f4d233a6d7731c4e8ff5c52fe5a519d, type: 2}
+  abilityTag: 4
+  synergyRequirement: {fileID: 11400000, guid: 8c1e62379bf26c94e82dd046a3122063, type: 2}
   isBonusOnly: 1
-  baseDamage: 20
-  attackMultiplier: 2.5
+  baseDamage: 10
+  attackMultiplier: 1
