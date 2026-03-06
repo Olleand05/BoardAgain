@@ -22,6 +22,8 @@ namespace BoardAgain.Characters
         public int defense;
         [HideInInspector]
         public int shield;
+        [SerializeField]
+        private GameObject plateArmor;
 
         public Animator animator;
 
@@ -51,6 +53,11 @@ namespace BoardAgain.Characters
                 characterName = "BOSS "+characterName;
                 maxHealth += 50;
                 attack += 10;
+
+                if(plateArmor != null)
+                {
+                    plateArmor.SetActive(true);
+                }
 
                 Debug.Log("Boss Spawned! Health and Attack increased.");
             }
