@@ -19,6 +19,8 @@ namespace BoardAgain.Abilities
         [Header("Unlock Condition")]
         public SynergyRequirement synergyRequirement;
 
+        [Header("Classification")]
+        public bool isBonusOnly;
         public bool IsUnlocked(Ability[] equippedAbilities)
         {
             if (synergyRequirement == null)
