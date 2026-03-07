@@ -21,7 +21,7 @@ namespace BoardAgain.Abilities
         public string GetRuntimeDescription(Character caster)
         {
             int amount = Mathf.RoundToInt(baseShield + caster.defense);
-            return $"{abilityDescription}\nGain {amount} shield.";
+            return $"{abilityDescription}\nGain {amount} shield.\nSynergy: {abilityTag}";
         }
     }
 }

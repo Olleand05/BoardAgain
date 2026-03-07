@@ -24,7 +24,7 @@ namespace BoardAgain.Abilities
 
         public string GetRuntimeDescription(Character caster)
         {
-            return $"{abilityDescription}\nHeals for {minHealing} - {maxHealing}.";
+            return $"{abilityDescription}\nHeals for {minHealing} - {maxHealing}.\nSynergy: {abilityTag}";
         }
     }
 }
