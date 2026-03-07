@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Citrus Cure
   abilityDescription: The character pulls out and eats a fresh orange
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   abilityTag: 4
   synergyRequirement: {fileID: 0}
+  isBonusOnly: 0
   baseHealing: 10
   healMultiplier: 1

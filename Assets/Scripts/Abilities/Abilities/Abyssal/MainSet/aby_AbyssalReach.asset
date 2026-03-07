@@ -15,7 +15,7 @@ MonoBehaviour:
   abilityName: Abyssal Reach
   abilityDescription: Summons a massive, dark tentacle or an anchor made of shadows
     to strike a distant foe.
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: 482611fe6bc559142a00be6e726b4862, type: 3}
   abilityTag: 5
   synergyRequirement: {fileID: 0}
   isBonusOnly: 0

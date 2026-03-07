@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Walk The Plank
   abilityDescription: Force your target to walk the plank
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: 7c47b20bb9874304a809dc5580d403ba, type: 3}
   abilityTag: 1
   synergyRequirement: {fileID: 11400000, guid: 8c1e62379bf26c94e82dd046a3122063, type: 2}
   isBonusOnly: 1

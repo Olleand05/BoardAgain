@@ -16,7 +16,7 @@ MonoBehaviour:
   abilityDescription: 'Command the ocean''s absolute darkness to swallow the battlefield.
 
 '
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: d1afd3f4d23c24f418ffc315afb04965, type: 3}
   abilityTag: 1
   synergyRequirement: {fileID: 11400000, guid: 9d922918960840a419807421ba5f1621, type: 2}
   isBonusOnly: 1

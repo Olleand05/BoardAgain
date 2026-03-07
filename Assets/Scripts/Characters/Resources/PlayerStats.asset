@@ -18,8 +18,8 @@ MonoBehaviour:
   defense: 0
   abilityLibrary: {fileID: 11400000, guid: 9d8d63eb4f9ac9445b5ab5afcd3a5fbf, type: 2}
   abilities:
-  - {fileID: 11400000, guid: 660b407b1e661e14f83b64f1d7199cac, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: db8a5b5b5ff40904f8c31aaf870c1399, type: 2}
+  - {fileID: 11400000, guid: 37270829a15f38d488326a2695e4361b, type: 2}
+  - {fileID: 11400000, guid: 6ff96ab2c5ee94b4b91e1a696bcb3ea4, type: 2}
+  - {fileID: 11400000, guid: 1b412d2ab28fbea44bcfcdc38f1c56cb, type: 2}
   bonusAbility: {fileID: 0}
