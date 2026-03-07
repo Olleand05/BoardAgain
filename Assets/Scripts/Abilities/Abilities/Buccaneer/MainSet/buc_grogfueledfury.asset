@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Grof-Fueled Fury
   abilityDescription: The character takes a swig of high-proof spirits.
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: b0e62ed71b1538648b719821f4f63b4c, type: 3}
   abilityTag: 4
   synergyRequirement: {fileID: 0}
+  isBonusOnly: 0
   statMultiplier: 2
   stat: 0

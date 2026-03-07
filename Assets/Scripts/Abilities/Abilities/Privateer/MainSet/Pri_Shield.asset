@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Shield
   abilityDescription: Shield yourself for 30 damage! (increases with defense)
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: e5ecc98ff40556543b77c8c2aa090822, type: 3}
   abilityTag: 3
   synergyRequirement: {fileID: 0}
+  isBonusOnly: 0
   baseShield: 30

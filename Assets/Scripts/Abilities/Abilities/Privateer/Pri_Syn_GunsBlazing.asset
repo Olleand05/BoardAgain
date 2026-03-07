@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Guns Blazing
   abilityDescription: Fill your target with new holes.
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: b7f8695cf65a4f24eb37544298821146, type: 3}
   abilityTag: 1
   synergyRequirement: {fileID: 11400000, guid: a76663d013397ae4a97ef72a789f78cf, type: 2}
   isBonusOnly: 1

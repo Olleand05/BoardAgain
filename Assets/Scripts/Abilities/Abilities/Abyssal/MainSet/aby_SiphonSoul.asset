@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Siphon Soul
   abilityDescription: Drags the essence out of the ocean's depths to restore health.
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   abilityTag: 5
   synergyRequirement: {fileID: 0}
   isBonusOnly: 0

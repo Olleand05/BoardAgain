@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Void Spear
   abilityDescription: Hurl a concentrated bolt of abyssal energy at the target.
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: 1d74880bed4586644a16a79a2d9dc8af, type: 3}
   abilityTag: 5
   synergyRequirement: {fileID: 0}
   isBonusOnly: 0

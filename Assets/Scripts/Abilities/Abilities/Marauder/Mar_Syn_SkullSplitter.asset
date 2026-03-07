@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Skull Splitter
   abilityDescription: Cleave your foe's skull with a well placed blow.
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: 2a295373a10441545bcaf619b61bea94, type: 3}
   abilityTag: 1
   synergyRequirement: {fileID: 11400000, guid: 7f4d233a6d7731c4e8ff5c52fe5a519d, type: 2}
   isBonusOnly: 1
