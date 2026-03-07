@@ -168,6 +168,13 @@ namespace BoardAgain.Characters
         {
             return currentHealth <= 0;
         }
+        public void PlayAnimation(string triggerName)
+        {
+            if (animator != null)
+            {
+                animator.SetTrigger(triggerName);
+            }
+        }
     }
 
 }

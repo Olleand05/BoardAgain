@@ -69,19 +69,17 @@ namespace BoardAgain.Battle
         public void PlayerUseAbility(int index)
         {
             if (!isPlayerTurn || player == null || enemy == null) return;
-
             Ability ability = player.GetMainAbility(index);
-
             if (ability == null) return;
 
+         
             if (sfxSource != null && ability.castSound != null)
-            {
                 sfxSource.PlayOneShot(ability.castSound);
-            }
-
 
             LogMessage($"Player used <b>{ability.abilityName}</b>!");
-            player.PlayAttackAnimation();
+
+            PlayClassBasedAnimation(player, ability);
+
             ability.ActivateAbility(player, enemy);
 
             if (enemy.IsCharacterDead())
@@ -90,6 +88,17 @@ namespace BoardAgain.Battle
                 return;
             }
             EndPlayerTurn();
+        }
+        private void PlayClassBasedAnimation(Character caster, Ability ability)
+        {
+            string triggerName = "MeleeAttack"; 
+
+            if (ability is DamageAbility) triggerName = "MeleeAttack";
+            else if (ability is BlockAbility) triggerName = "Block";
+            else if (ability is HealingAbility) triggerName = "Buff";
+            else if (ability is BuffAbility) triggerName = "Buff";
+
+            caster.PlayAnimation(triggerName);
         }
 
         public void PlayerUseBonusAbility()
