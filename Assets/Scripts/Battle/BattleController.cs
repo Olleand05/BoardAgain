@@ -128,7 +128,12 @@ namespace BoardAgain.Battle
 
             GameObject newLog = Instantiate(logTextPrefab, logContentParent);
             newLog.transform.localScale = Vector3.one;
-            newLog.GetComponent<TextMeshProUGUI>().text = message;
+            TextMeshProUGUI text = newLog.GetComponent<TextMeshProUGUI>();
+            text.text = message;
+            text.color = Color.black;
+
+            text.outlineWidth = 0.3f;
+            text.outlineColor = Color.black;
 
             Canvas.ForceUpdateCanvases();
             StartCoroutine(ScrollToBottom());
