@@ -7,7 +7,6 @@ public class Bootstrap : MonoBehaviour
 
     private void Awake()
     {
-        // Ensure GameManager exists in the scene
         if (GameManager.Instance == null)
         {
             Instantiate(gameManagerPrefab);

@@ -32,7 +32,6 @@ public class NodeUI : MonoBehaviour
     {
         currentNodeType = type;
         button = GetComponent<Button>();
-        //nodeText.text = type.ToString();
         button.interactable = canClick;
 
         switch (type)
@@ -64,7 +63,6 @@ public class NodeUI : MonoBehaviour
 
             if (nodeIcon != null)
             {
-                //setColor(type);
 
                 if (!canClick)
                 {

@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class HealthBarSlider : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public Slider slider;
 
     private void Awake()

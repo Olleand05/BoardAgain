@@ -49,7 +49,6 @@ namespace BoardAgain.Characters
 
             if (gameObject.CompareTag("Enemy")&&NodeUI.isBossNext)
             {
-                //TODO: Implement better boss scaling based on player progress and stats, not just a flat increase
                 characterName = "BOSS "+characterName;
                 maxHealth += 50;
                 attack += 10;
@@ -106,8 +105,6 @@ namespace BoardAgain.Characters
         public void TakeDamage(int damageAmount)
         {
             int damageTaken = Mathf.Max(damageAmount - defense, 0);
-
-            //Added for shield mechanic, shield absorbs damage before health
 
             int absorbed = Mathf.Min(shield, damageTaken);
             shield -= absorbed;

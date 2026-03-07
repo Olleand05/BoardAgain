@@ -22,7 +22,6 @@ namespace BoardAgain.Battle
         {
             if (ability != null && caster != null)
             {
-                // Use the runtime description you already wrote!
                 string description = "";
                 if (ability is DamageAbility dmg) description = dmg.GetRuntimeDescription(caster);
                 else if (ability is HealingAbility heal) description = heal.GetRuntimeDescription(caster);

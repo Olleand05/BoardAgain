@@ -31,7 +31,6 @@ public class CharacterDataEditor : Editor
 
         CharacterData characterData = (CharacterData)target;
 
-        // Draw all serialized fields except "abilities"
         SerializedProperty prop = serializedObject.GetIterator();
         bool enterChildren = true;
 
@@ -39,30 +38,25 @@ public class CharacterDataEditor : Editor
         {
             enterChildren = false;
 
-            // Skip abilities, handle them manually
             if (prop.name == "abilities" || prop.name == "bonusAbility") continue;
 
-            // Draw AbilityLibrary explicitly if needed
             EditorGUILayout.PropertyField(prop, true);
         }
 
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Equipped Abilities", EditorStyles.boldLabel);
 
-        // Draw a warning if AbilityLibrary is missing
         if (characterData.abilityLibrary == null)
         {
             EditorGUILayout.HelpBox("Assign an AbilityLibrary to use filtered ability slots.", MessageType.Warning);
         }
         else
         {
-            // --- Main Abilities ---
             if (tagSelections == null || tagSelections.Length != characterData.abilities.Length)
                 tagSelections = new AbilityTag[characterData.abilities.Length];
 
             SerializedProperty abilitiesProp = serializedObject.FindProperty("abilities");
 
-            // Draw each ability slot
             for (int i = 0; i < abilitiesProp.arraySize; i++)
             {
                 EditorGUILayout.BeginVertical("box");
@@ -75,7 +69,6 @@ public class CharacterDataEditor : Editor
                 if (currentAbility != null && currentAbility.abilityTag != tagSelections[i])
                     abilitiesProp.GetArrayElementAtIndex(i).objectReferenceValue = null;
 
-                // Filter from library
                 Ability[] filteredAbilities = characterData.abilityLibrary.allAbilities
                     .Where(a => a.abilityTag == tagSelections[i])
                     .ToArray();         
@@ -90,7 +83,7 @@ public class CharacterDataEditor : Editor
 
                 int currentIndex = System.Array.IndexOf(filteredAbilities, currentAbility);
 
-                int offsetIndex = currentIndex + 1; // +1 for "None" option
+                int offsetIndex = currentIndex + 1; 
 
                 int newIndex = EditorGUILayout.Popup("Ability", offsetIndex, abilityNames);
 
@@ -106,7 +99,6 @@ public class CharacterDataEditor : Editor
                 EditorGUILayout.Space();
             }
 
-            // --- Bonus Ability ---
             EditorGUILayout.LabelField("Bonus Ability (Synergy)", EditorStyles.boldLabel);
             Ability[] synergyAbilities = characterData.abilityLibrary.allAbilities
                 .Where(a => a.abilityTag == AbilityTag.Synergy)
@@ -120,7 +112,7 @@ public class CharacterDataEditor : Editor
 
             int bonusIndex = System.Array.IndexOf(synergyAbilities, characterData.bonusAbility);
 
-            int offsetBonusIndex = bonusIndex + 1; // +1 for "None" option
+            int offsetBonusIndex = bonusIndex + 1; 
 
             int newBonusIndex = EditorGUILayout.Popup("Bonus Ability", offsetBonusIndex, synergyNames);
 

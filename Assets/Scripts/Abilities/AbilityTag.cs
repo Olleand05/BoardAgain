@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BoardAgain.Abilities
 {
-    public enum AbilityTag //TODO: Expand
+    public enum AbilityTag 
     {   
         None = 0,
         Synergy = 1,
