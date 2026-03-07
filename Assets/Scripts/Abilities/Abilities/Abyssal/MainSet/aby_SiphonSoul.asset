@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d11ddb86dc92eb243947d82630a6a876, type: 3}
+  m_Name: aby_SiphonSoul
+  m_EditorClassIdentifier: 
+  abilityName: Siphon Soul
+  abilityDescription: Drags the essence out of the ocean's depths to restore health.
+  castSound: {fileID: 0}
+  abilityTag: 5
+  synergyRequirement: {fileID: 0}
+  isBonusOnly: 0
+  baseHealing: 0
+  healMultiplier: 0

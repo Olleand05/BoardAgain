@@ -9,5 +9,6 @@ namespace BoardAgain.Abilities
         Marauder = 2,
         Privateer = 3,
         Buccaneer = 4,
+        Abyssal = 5,
     }
 }

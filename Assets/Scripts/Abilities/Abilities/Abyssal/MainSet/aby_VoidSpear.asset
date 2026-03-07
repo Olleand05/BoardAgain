@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c41370626498834e874b802eb66b0ae, type: 3}
-  m_Name: buc_WalkThePlank
+  m_Name: aby_VoidSpear
   m_EditorClassIdentifier: 
-  abilityName: Walk The Plank
-  abilityDescription: Force your target to walk the plank
+  abilityName: Void Spear
+  abilityDescription: Hurl a concentrated bolt of abyssal energy at the target.
   castSound: {fileID: 0}
-  abilityTag: 1
-  synergyRequirement: {fileID: 11400000, guid: 8c1e62379bf26c94e82dd046a3122063, type: 2}
-  isBonusOnly: 1
+  abilityTag: 5
+  synergyRequirement: {fileID: 0}
+  isBonusOnly: 0
   baseDamage: 10
   attackMultiplier: 1
