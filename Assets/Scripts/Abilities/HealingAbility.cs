@@ -17,7 +17,7 @@ namespace BoardAgain.Abilities
         public override void ActivateAbility(Character caster, Character target)
         {
             int finalHealing = CalculateHealing(caster);
-            target.Heal(finalHealing);
+            caster.Heal(finalHealing);
             Debug.Log($"{caster.name} used {name} on {target.name} for {finalHealing} damage! (Base: {baseHealing}, Attack: {caster.data.attack}, Multiplier: {healMultiplier})");
         }
 
