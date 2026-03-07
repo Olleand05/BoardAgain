@@ -18,7 +18,7 @@ MonoBehaviour:
   defense: 0
   abilityLibrary: {fileID: 11400000, guid: 9d8d63eb4f9ac9445b5ab5afcd3a5fbf, type: 2}
   abilities:
-  - {fileID: 11400000, guid: 1bdc06dc57aa56e4da6fad2f8b2fa42b, type: 2}
+  - {fileID: 11400000, guid: ebc0444b1cbe0b84eb5ace3d1007bcb1, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
