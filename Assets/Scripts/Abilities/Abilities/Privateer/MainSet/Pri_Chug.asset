@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Chug
   abilityDescription: Chug down some rum.
+  castSound: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   abilityTag: 3
   synergyRequirement: {fileID: 0}
+  isBonusOnly: 0
   baseHealing: 5
   healMultiplier: 0

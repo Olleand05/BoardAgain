@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Flintlocked
   abilityDescription: Fire a well-aimed shot at your target.
+  castSound: {fileID: 8300000, guid: 566d2ea6240b489479a6e9fd608c2621, type: 3}
   abilityTag: 3
   synergyRequirement: {fileID: 0}
+  isBonusOnly: 0
   baseDamage: 10
   attackMultiplier: 1.3

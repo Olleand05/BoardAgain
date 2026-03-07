@@ -15,8 +15,9 @@ MonoBehaviour:
   abilityName: Broadside Blast
   abilityDescription: Summons a ghostly row of cannons that fire a synchronized volley
     in a line
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: 21c4a490b24ba2045bc815f7626a40ef, type: 3}
   abilityTag: 4
   synergyRequirement: {fileID: 0}
+  isBonusOnly: 0
   baseDamage: 10
   attackMultiplier: 1
