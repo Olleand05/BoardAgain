@@ -17,5 +17,6 @@ MonoBehaviour:
   castSound: {fileID: 8300000, guid: d0f166575306db84091dc03fce0eff69, type: 3}
   abilityTag: 2
   synergyRequirement: {fileID: 0}
+  isBonusOnly: 0
   baseDamage: 15
-  attackMultiplier: 1.5
+  attackMultiplier: 1

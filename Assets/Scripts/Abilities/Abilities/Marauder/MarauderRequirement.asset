@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MarauderRequirement
   m_EditorClassIdentifier: 
   requiredTag: 2
-  requiredCount: 4
+  requiredCount: 3

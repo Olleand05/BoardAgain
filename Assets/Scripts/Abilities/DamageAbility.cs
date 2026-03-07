@@ -1,7 +1,6 @@
 using UnityEngine;
 using BoardAgain.Characters;
 
-
 namespace BoardAgain.Abilities
 {
     [CreateAssetMenu(menuName = "Abilities/DamageAbility")]
@@ -12,22 +11,27 @@ namespace BoardAgain.Abilities
         public int baseDamage = 10;
         public float attackMultiplier = 1f;
 
+        [Header("Randomness")]
+        public int randomVariance = 3;
+
         public override void ActivateAbility(Character caster, Character target)
         {
             int finalDamage = CalculateDamage(caster);
             target.TakeDamage(finalDamage);
-            Debug.Log($"{caster.name} used {name} on {target.name} for {finalDamage} damage! (Base: {baseDamage}, Attack: {caster.attack}, Multiplier: {attackMultiplier})");
+
+            Debug.Log($"{caster.name} used {name} on {target.name} for {finalDamage} damage!");
         }
 
         private int CalculateDamage(Character caster)
         {
-            return Mathf.RoundToInt(baseDamage + caster.attack * attackMultiplier);
+            int baseValue = Mathf.RoundToInt(baseDamage + caster.attack * attackMultiplier);
+            int randomOffset = Random.Range(-randomVariance, randomVariance + 1);
+            return baseValue + randomOffset;
         }
 
         public string GetRuntimeDescription(Character caster)
         {
-            int finalDamage = CalculateDamage(caster);
-            return $"{abilityDescription}\nDeals {finalDamage} damage.";
+            return $"{abilityDescription}\nBase damage: {baseDamage+attackMultiplier*caster.attack}.";
         }
     }
 }

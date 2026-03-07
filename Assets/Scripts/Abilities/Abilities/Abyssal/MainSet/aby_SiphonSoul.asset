@@ -18,5 +18,5 @@ MonoBehaviour:
   abilityTag: 5
   synergyRequirement: {fileID: 0}
   isBonusOnly: 0
-  baseHealing: 0
-  healMultiplier: 0
+  minHealing: 10
+  maxHealing: 40

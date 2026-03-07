@@ -40,8 +40,8 @@ namespace BoardAgain.Core
 
         public void SetAbilities()
         {
-            playerCharacter.equippedAbilities[0] = abilityLibrary.GetAbilityByName("Overpower");
-            playerCharacter.equippedAbilities[1] = abilityLibrary.GetAbilityByName("Bash");
+            playerCharacter.equippedAbilities[0] = abilityLibrary.GetAbilityByName("Void Spear");
+            playerCharacter.equippedAbilities[1] = null;
             playerCharacter.equippedAbilities[2] = null;
             playerCharacter.equippedAbilities[3] = null;
         }
