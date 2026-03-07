@@ -37,6 +37,12 @@ namespace BoardAgain.Battle
         public GameObject logTextPrefab;
         public Transform logContentParent;
 
+        [Header("Synergies")]
+        public TextMeshProUGUI MauCounter;
+        public TextMeshProUGUI BucCounter;
+        public TextMeshProUGUI PriCounter;
+        public TextMeshProUGUI AbyCounter;
+
         public bool isPlayerTurn = true;
         private bool hasUsedBonusAbilityThisTurn = false;
 
@@ -196,6 +202,7 @@ namespace BoardAgain.Battle
                     if (bonusBtn != null) bonusBtn.interactable = false;
                 }
             }
+            UpdateSynergyUI();
         }
 
         private void ConfigureAbilityButton(TMPro.TextMeshProUGUI textElement, Ability ability, UnityEngine.UI.Button btn)
@@ -282,6 +289,34 @@ namespace BoardAgain.Battle
             {
                 ShowFinalVictoryScreen();
             }
+        }
+
+        public void UpdateSynergyUI()
+        {
+            if (player == null) return;
+
+            int mauCount = 0;
+            int bucCount = 0;
+            int priCount = 0;
+            int abyCount = 0;
+
+            foreach (Ability ab in player.equippedAbilities)
+            {
+                if (ab == null) continue;
+
+                switch (ab.abilityTag)
+                {
+                    case AbilityTag.Marauder: mauCount++; break;
+                    case AbilityTag.Buccaneer: bucCount++; break;
+                    case AbilityTag.Privateer: priCount++; break;
+                    case AbilityTag.Abyssal: abyCount++; break;
+                }
+            }
+
+            if (MauCounter != null) MauCounter.text = $"Marauder: {mauCount}/{3}";
+            if (BucCounter != null) BucCounter.text = $"Buccaneer: {bucCount}/{2}";
+            if (PriCounter != null) PriCounter.text = $"Privateer: {priCount}/{4}";
+            if (AbyCounter != null) AbyCounter.text = $"Abyssal: {abyCount}/{4}";
         }
 
         public void ShowFinalVictoryScreen()

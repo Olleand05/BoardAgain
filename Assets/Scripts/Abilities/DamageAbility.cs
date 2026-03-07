@@ -31,7 +31,7 @@ namespace BoardAgain.Abilities
 
         public string GetRuntimeDescription(Character caster)
         {
-            return $"{abilityDescription}\nBase damage: {baseDamage+attackMultiplier*caster.attack}.";
+            return $"{abilityDescription}\nBase damage: {baseDamage+attackMultiplier*caster.attack}.\nSynergy: {abilityTag}";
         }
     }
 }
