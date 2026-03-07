@@ -7,9 +7,12 @@ namespace BoardAgain.Core
     {
         public void StartGameButton()
         {
+            GameManager.Instance.ResetGame();
             GameManager.Instance.InitalizePlayer();
+
             Time.timeScale = 1f;
             SceneManager.LoadScene("MapScreen");
         }
+
     }
 }

@@ -49,7 +49,8 @@ namespace BoardAgain.Core
         public void InitalizePlayer()
         {
             if (playerCharacter != null)
-            {
+            {   
+                playerCharacter.currentHealth = playerCharacter.maxHealth;
                 SetAbilities();
                 return;
             }
