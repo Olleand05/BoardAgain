@@ -30,11 +30,9 @@ namespace BoardAgain.Battle
 
         public void StartRewardProcess()
         {
-            // Get the player directly from the persistent GameManager instance
             Character player = GameManager.Instance.playerCharacter;
             battleController = GameManager.Instance.battleController;
 
-            // If we already have a bonus ability, skip to the standard swap
             if (player.bonusAbility != null)
             {
                 StartRandomSwapProcess();
@@ -44,10 +42,12 @@ namespace BoardAgain.Battle
             rewardPanel.SetActive(true);
             foreach (Transform child in buttonContainer) Destroy(child.gameObject);
 
+            Ability[] activeAbilities = player.equippedAbilities.Where(a => a != null).ToArray();
+
             List<Ability> available = new List<Ability>();
             foreach (Ability ab in allPotentialBonusAbilities)
             {
-                if (ab != null && ab.IsUnlocked(player.equippedAbilities))
+                if (ab != null && ab.IsUnlocked(activeAbilities))
                 {
                     available.Add(ab);
                 }
@@ -68,7 +68,6 @@ namespace BoardAgain.Battle
 
             btn.GetComponent<Button>().onClick.AddListener(() =>
             {
-                // Assign to the persistent GameManager player
                 GameManager.Instance.playerCharacter.bonusAbility = ability;
                 Finish();
             });
@@ -135,7 +134,6 @@ namespace BoardAgain.Battle
 
         public void ReplaceAbility(int slotIndex)
         {
-            // Ensure we are modifying the persistent character
             Character player = GameManager.Instance.playerCharacter;
 
             if (slotIndex >= 0 && slotIndex < player.equippedAbilities.Length)
@@ -150,7 +148,6 @@ namespace BoardAgain.Battle
         {
             swapPanel.SetActive(false);
 
-            // Critical: Force update before leaving the scene
             if (battleController != null)
             {
                 battleController.UpdateAbilityButtonNames();
