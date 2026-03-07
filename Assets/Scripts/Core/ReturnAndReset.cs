@@ -7,12 +7,14 @@ namespace BoardAgain.Core
     {
         public void ResetRunAndReturn()
         {
-
             MapManager.currentNodeIndex = 0;
 
-            SceneManager.LoadScene("TitleScreen");
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.ResetGame();
+            }
 
-            GameManager.Instance.ResetGame();
+            SceneManager.LoadScene("TitleScreen");
         }
     }
 }

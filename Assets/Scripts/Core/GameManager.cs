@@ -40,23 +40,26 @@ namespace BoardAgain.Core
 
         public void SetAbilities()
         {
-            playerCharacter.equippedAbilities[0] = abilityLibrary.GetAbilityByName("Punch");
-            playerCharacter.equippedAbilities[1] = null;
+            playerCharacter.equippedAbilities[0] = abilityLibrary.GetAbilityByName("Chug");
+            playerCharacter.equippedAbilities[1] = abilityLibrary.GetAbilityByName("Void Spear");
             playerCharacter.equippedAbilities[2] = null;
             playerCharacter.equippedAbilities[3] = null;
         }
 
         public void InitalizePlayer()
         {
+            
             if (playerCharacter != null)
-            {   
-                playerCharacter.currentHealth = playerCharacter.maxHealth;
-                SetAbilities();
-                return;
+            {
+                Destroy(playerCharacter.gameObject);
             }
 
             playerCharacter = Instantiate(playerPrefab);
+
+            
+            playerCharacter.currentHealth = 100;
             SetAbilities();
+
             DontDestroyOnLoad(playerCharacter.gameObject);
         }
 

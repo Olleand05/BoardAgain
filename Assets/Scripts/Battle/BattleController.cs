@@ -101,7 +101,7 @@ namespace BoardAgain.Battle
             else if (ability is BlockAbility) triggerName = "Block";
             else if (ability is HealingAbility) triggerName = "Buff";
             else if (ability is BuffAbility) triggerName = "Buff";
-
+            Debug.Log(caster.currentHealth);
             caster.PlayAnimation(triggerName);
         }
 

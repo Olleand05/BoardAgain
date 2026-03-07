@@ -7189,6 +7189,10 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 1792246682607974563, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+      propertyPath: bossData
+      value: 
+      objectReference: {fileID: 11400000, guid: 6024d4acc1e496d4b8621d9de699698f, type: 2}
+    - target: {fileID: 1792246682607974563, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       propertyPath: plateArmor
       value: 
       objectReference: {fileID: 1740836947}
