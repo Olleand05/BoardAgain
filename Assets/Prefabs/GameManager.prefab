@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca53e33c87b670844a896f79797840cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityLibrary: {fileID: 11400000, guid: 9d8d63eb4f9ac9445b5ab5afcd3a5fbf, type: 2}
   playerPrefab: {fileID: 7507413383347772869, guid: bd10936850fae654593f6c238793650b, type: 3}
   playerCharacter: {fileID: 0}
   battleController: {fileID: 0}

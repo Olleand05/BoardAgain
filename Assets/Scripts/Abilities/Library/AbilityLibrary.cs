@@ -13,6 +13,11 @@ public class AbilityLibrary : ScriptableObject
         return allAbilities.Where(a => a.abilityTag == tag).ToArray();
     }
 
+    public Ability GetAbilityByName(string name)
+    {
+        return allAbilities.FirstOrDefault(a => a.abilityName == name);
+    }
+
 #if UNITY_EDITOR
 
     [CustomEditor(typeof(AbilityLibrary))]

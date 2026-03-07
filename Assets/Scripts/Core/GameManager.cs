@@ -8,6 +8,7 @@ namespace BoardAgain.Core
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; }
+        public AbilityLibrary abilityLibrary;
 
         [Header("Runtime References")]
         public Character playerPrefab;
@@ -37,11 +38,24 @@ namespace BoardAgain.Core
             battleController = battle;
         }
 
+        public void SetAbilities()
+        {
+            playerCharacter.equippedAbilities[0] = abilityLibrary.GetAbilityByName("Overpower");
+            playerCharacter.equippedAbilities[1] = abilityLibrary.GetAbilityByName("Bash");
+            playerCharacter.equippedAbilities[2] = null;
+            playerCharacter.equippedAbilities[3] = null;
+        }
+
         public void InitalizePlayer()
         {
-            if (playerCharacter != null) return;
+            if (playerCharacter != null)
+            {
+                SetAbilities();
+                return;
+            }
 
             playerCharacter = Instantiate(playerPrefab);
+            SetAbilities();
             DontDestroyOnLoad(playerCharacter.gameObject);
         }
 
