@@ -20,6 +20,6 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: db8a5b5b5ff40904f8c31aaf870c1399, type: 2}
   - {fileID: 11400000, guid: 37270829a15f38d488326a2695e4361b, type: 2}
-  - {fileID: 11400000, guid: 6ff96ab2c5ee94b4b91e1a696bcb3ea4, type: 2}
+  - {fileID: 11400000, guid: 03a799f59f0f78d48849ee782b656fa2, type: 2}
   - {fileID: 11400000, guid: 1b412d2ab28fbea44bcfcdc38f1c56cb, type: 2}
   bonusAbility: {fileID: 0}
