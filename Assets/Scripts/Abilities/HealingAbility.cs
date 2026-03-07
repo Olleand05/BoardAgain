@@ -1,4 +1,3 @@
-using BoardAgain.Abilities;
 using UnityEngine;
 using BoardAgain.Characters;
 
@@ -7,29 +6,25 @@ namespace BoardAgain.Abilities
     [CreateAssetMenu(menuName = "Abilities/HealingAbility")]
     public class HealingAbility : Ability
     {
-
         [Header("Healing Settings")]
-        public int baseHealing;
-
-        [Tooltip("Multiplier applied to the caster's current health to calculate additional healing.")]
-        public float healMultiplier;
+        public int minHealing = 10;
+        public int maxHealing = 50;
 
         public override void ActivateAbility(Character caster, Character target)
         {
-            int finalHealing = CalculateHealing(caster);
+            int finalHealing = CalculateHealing();
             caster.Heal(finalHealing);
-            Debug.Log($"{caster.name} used {name} on {target.name} for {finalHealing} damage! (Base: {baseHealing}, Attack: {caster.data.attack}, Multiplier: {healMultiplier})");
+            Debug.Log($"{caster.name} healed for {finalHealing}!");
         }
 
-        private int CalculateHealing(Character caster)
+        private int CalculateHealing()
         {
-            return Mathf.RoundToInt(baseHealing + caster.CurrentHealth * healMultiplier);
+            return Random.Range(minHealing, maxHealing + 1);
         }
 
         public string GetRuntimeDescription(Character caster)
         {
-            int finalHealing = CalculateHealing(caster);
-            return $"{abilityDescription}\nRestores {finalHealing} damage.";
+            return $"{abilityDescription}\nHeals for {minHealing} - {maxHealing}.";
         }
     }
 }

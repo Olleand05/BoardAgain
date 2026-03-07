@@ -35,8 +35,15 @@ namespace BoardAgain.Battle
 
         public void StartRewardProcess()
         {
+            
             Character player = GameManager.Instance.playerCharacter;
             battleController = GameManager.Instance.battleController;
+
+            if (NodeUI.isBossNext)
+            {
+                battleController.ShowFinalVictoryScreen();
+                return;
+            }
 
             if (player.bonusAbility != null)
             {

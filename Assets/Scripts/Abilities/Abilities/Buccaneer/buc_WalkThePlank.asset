@@ -18,5 +18,5 @@ MonoBehaviour:
   abilityTag: 1
   synergyRequirement: {fileID: 11400000, guid: 8c1e62379bf26c94e82dd046a3122063, type: 2}
   isBonusOnly: 1
-  baseDamage: 10
+  baseDamage: 0
   attackMultiplier: 1

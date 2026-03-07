@@ -18,4 +18,4 @@ MonoBehaviour:
   abilityTag: 3
   synergyRequirement: {fileID: 0}
   isBonusOnly: 0
-  baseShield: 30
+  baseShield: 25
