@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c41370626498834e874b802eb66b0ae, type: 3}
-  m_Name: buc_WalkThePlank
+  m_Name: aby_InevitabilityoftheAbyss
   m_EditorClassIdentifier: 
-  abilityName: Walk The Plank
-  abilityDescription: Force your target to walk the plank
+  abilityName: Inevitability of the Abyss
+  abilityDescription: 'Command the ocean''s absolute darkness to swallow the battlefield.
+
+'
   castSound: {fileID: 0}
   abilityTag: 1
-  synergyRequirement: {fileID: 11400000, guid: 8c1e62379bf26c94e82dd046a3122063, type: 2}
+  synergyRequirement: {fileID: 11400000, guid: 9d922918960840a419807421ba5f1621, type: 2}
   isBonusOnly: 1
   baseDamage: 10
   attackMultiplier: 1
