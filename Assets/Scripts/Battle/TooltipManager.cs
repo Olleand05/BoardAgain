@@ -13,7 +13,6 @@ namespace BoardAgain.Battle
         {
             tooltipBox.SetActive(true);
             tooltipText.text = text;
-            // Position it slightly above the button
             tooltipBox.transform.position = position + (Vector3)offset;
         }
 

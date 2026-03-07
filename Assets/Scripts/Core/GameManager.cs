@@ -17,7 +17,6 @@ namespace BoardAgain.Core
 
         private void Awake()
         {
-            // Singleton pattern
             if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
@@ -48,13 +47,11 @@ namespace BoardAgain.Core
 
         public void ResetGame()
         {
-            // Clean up player character
             if (playerCharacter != null)
             {
                 Destroy(playerCharacter.gameObject);
                 playerCharacter = null;
             }
-            // Clean up battle controller
             if (battleController != null)
             {
                 Destroy(battleController.gameObject);

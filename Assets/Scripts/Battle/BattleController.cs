@@ -17,7 +17,7 @@ namespace BoardAgain.Battle
         [HideInInspector]
         public Character player;
 
-        [SerializeField] private Character playerVisual; // This will hold the instantiated player character for visual purposes
+        [SerializeField] private Character playerVisual; 
         private Character playerVisualInstance;
 
         public Character enemy;
@@ -30,7 +30,6 @@ namespace BoardAgain.Battle
         public AudioSource sfxSource;
 
         [Header("UI Elements")]
-        // This list should now contain 4 TextMeshProUGUI elements in the Inspector
         public List<TextMeshProUGUI> abilityButtonTexts;
         public TextMeshProUGUI bonusAbilityButtonText;
 
@@ -45,7 +44,6 @@ namespace BoardAgain.Battle
         {
 
             player = GameManager.Instance.playerCharacter;
-            //Reset player stats to base values
             player.attack=player.data.attack;
             player.defense = player.data.defense;
 
@@ -237,7 +235,6 @@ namespace BoardAgain.Battle
             LogMessage($"Enemy used <b>{enemyAbility.abilityName}</b>!");
                 
         
-            // Play Enemy Sound
             if (sfxSource != null && enemyAbility.castSound != null)
             {
                 sfxSource.PlayOneShot(enemyAbility.castSound);
@@ -264,7 +261,7 @@ namespace BoardAgain.Battle
             UpdateAbilityButtonNames();
         }
 
-        // Change HandleVictory to call the routine
+       
         void HandleVictory()
         {
             isPlayerTurn = false;
@@ -277,7 +274,6 @@ namespace BoardAgain.Battle
             enemy.HandleDeath();
             yield return new WaitForSeconds(2.0f);
 
-            // Stop here to let the player choose a reward
             if (rewardManager != null)
             {
                 rewardManager.StartRewardProcess();
@@ -288,7 +284,6 @@ namespace BoardAgain.Battle
             }
         }
 
-        // Move your map/popup logic into this separate function
         public void ShowFinalVictoryScreen()
         {
             MapManager.currentNodeIndex++;
@@ -300,7 +295,6 @@ namespace BoardAgain.Battle
             }
 
             victoryPopUp.SetActive(true);
-            // Note: Do not use Time.timeScale = 0 if you want UI buttons to work
         }
 
         void HandleDefeat()
