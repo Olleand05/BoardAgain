@@ -11,6 +11,9 @@ namespace BoardAgain.Battle
 {
     public class BattleRewardManager : MonoBehaviour
     {
+
+        public TooltipManager tooltipManager;
+
         [Header("UI References")]
         public GameObject rewardPanel;
         public Transform buttonContainer;
@@ -23,6 +26,8 @@ namespace BoardAgain.Battle
         [Header("Swap UI References")]
         public GameObject swapPanel;
         public TextMeshProUGUI newAbilityText;
+        public TextMeshProUGUI newAbilityDescriptionText;
+        public TextMeshProUGUI newAbilitySynergy;
         public List<TextMeshProUGUI> swapSlotButtonTexts;
 
         private Ability pendingAbility;
@@ -64,21 +69,45 @@ namespace BoardAgain.Battle
         private void CreateChoiceButton(Ability ability, Character player)
         {
             GameObject btn = Instantiate(buttonPrefab, buttonContainer);
-            btn.GetComponentInChildren<TextMeshProUGUI>().text = $"<b>{ability.abilityName}</b>\n{ability.abilityDescription}";
 
-            btn.GetComponent<Button>().onClick.AddListener(() =>
+            TextMeshProUGUI text = btn.GetComponentInChildren<TextMeshProUGUI>();
+            if (text != null)
             {
-                GameManager.Instance.playerCharacter.bonusAbility = ability;
-                Finish();
-            });
+                text.text = $"<b>{ability.abilityName}</b>";
+            }
+
+            Button button = btn.GetComponent<Button>();
+            if (button != null)
+            {
+                button.onClick.AddListener(() =>
+                {
+                    GameManager.Instance.playerCharacter.bonusAbility = ability;
+                    Finish();
+                });
+            }
+
+            var trigger = btn.GetComponent<AbilityTooltipTrigger>();
+            if (trigger == null)
+                trigger = btn.AddComponent<AbilityTooltipTrigger>();
+
+            trigger.Setup(ability, player, tooltipManager);
         }
 
         private void CreateSkipButton()
         {
             GameObject btn = Instantiate(buttonPrefab, buttonContainer);
-            btn.GetComponentInChildren<TextMeshProUGUI>().text = "<color=yellow>SKIP</color>\n(Keep the slot empty)";
 
-            btn.GetComponent<Button>().onClick.AddListener(() => Finish());
+            TextMeshProUGUI text = btn.GetComponentInChildren<TextMeshProUGUI>();
+            if (text != null)
+            {
+                text.text = "<color=black><b>SKIP</b></color>\n<size=70%>(Keep slot empty)</size>";
+            }
+
+            Button button = btn.GetComponent<Button>();
+            if (button != null)
+            {
+                button.onClick.AddListener(() => Finish());
+            }
         }
 
         private void Finish()
@@ -120,6 +149,16 @@ namespace BoardAgain.Battle
             swapPanel.SetActive(true);
             newAbilityText.text = $"You found: <b>{newAbility.abilityName}</b>!";
 
+            if (newAbilityDescriptionText != null)
+            {
+                newAbilityDescriptionText.text = newAbility.abilityDescription;
+            }
+
+            if (newAbilitySynergy != null)
+            {
+                newAbilitySynergy.text = $"Synergy: <b>{newAbility.abilityTag.ToString()}</b>!";
+            }
+
             Character player = GameManager.Instance.playerCharacter;
             for (int i = 0; i < swapSlotButtonTexts.Count; i++)
             {
@@ -127,7 +166,17 @@ namespace BoardAgain.Battle
                 {
                     Ability currentAbility = player.equippedAbilities[i];
                     swapSlotButtonTexts[i].text = currentAbility != null ?
-                        $"Replace {currentAbility.abilityName}" : "Fill Empty Slot";
+                        $"{currentAbility.abilityName}" : "Fill Empty Slot";
+
+                    Button btn = swapSlotButtonTexts[i].GetComponentInParent<Button>();
+
+                    if (btn != null && currentAbility != null)
+                    {
+                        var trigger = btn.gameObject.GetComponent<AbilityTooltipTrigger>();
+                        if (trigger == null) trigger = btn.gameObject.AddComponent<AbilityTooltipTrigger>();
+
+                        trigger.Setup(currentAbility, player, tooltipManager);
+                    }
                 }
             }
         }
