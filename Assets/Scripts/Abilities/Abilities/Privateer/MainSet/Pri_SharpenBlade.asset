@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pri_SharpenBlade
   m_EditorClassIdentifier: 
   abilityName: Sharpen Blade
-  abilityDescription: Increse your damage, boosts attack 2x!
+  abilityDescription: Sharpen your blade
   castSound: {fileID: 8300000, guid: b0e62ed71b1538648b719821f4f63b4c, type: 3}
   abilityTag: 3
   synergyRequirement: {fileID: 0}

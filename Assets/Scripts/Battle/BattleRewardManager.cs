@@ -37,6 +37,8 @@ namespace BoardAgain.Battle
         {
             
             Character player = GameManager.Instance.playerCharacter;
+            player.attack = player.data.attack;
+            player.defense = player.data.defense;
             battleController = GameManager.Instance.battleController;
 
             if (NodeUI.isBossNext)
@@ -153,6 +155,9 @@ namespace BoardAgain.Battle
 
         public void OpenSwapUI(Ability newAbility)
         {
+            if (tooltipManager != null)
+                tooltipManager.HideTooltip();
+
             swapPanel.SetActive(true);
             newAbilityText.text = $"You found: <b>{newAbility.abilityName}</b>!";
 
@@ -192,6 +197,9 @@ namespace BoardAgain.Battle
         {
             Character player = GameManager.Instance.playerCharacter;
 
+            if (tooltipManager != null)
+                tooltipManager.HideTooltip();
+
             if (slotIndex >= 0 && slotIndex < player.equippedAbilities.Length)
             {
                 player.equippedAbilities[slotIndex] = pendingAbility;
@@ -202,6 +210,9 @@ namespace BoardAgain.Battle
 
         public void CloseSwapUI()
         {
+            if (tooltipManager != null)
+                tooltipManager.HideTooltip();
+
             swapPanel.SetActive(false);
 
             if (battleController != null)

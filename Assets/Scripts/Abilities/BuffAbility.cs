@@ -28,7 +28,7 @@ namespace BoardAgain.Abilities
         public string GetRuntimeDescription(Character caster)
         {
             int statChange = statMultiplier;
-            return $"{abilityDescription}\nDeals {statChange} damage.\nSynergy: {abilityTag}";
+            return $"{abilityDescription}\nBoosts {stat} {statChange}x .\nSynergy: {abilityTag}";
         }
     }
 }

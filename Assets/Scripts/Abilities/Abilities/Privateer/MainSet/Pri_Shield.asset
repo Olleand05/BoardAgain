@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pri_Shield
   m_EditorClassIdentifier: 
   abilityName: Shield
-  abilityDescription: Shield yourself for 30 damage! (increases with defense)
+  abilityDescription: Cover yourself with your armor
   castSound: {fileID: 8300000, guid: e5ecc98ff40556543b77c8c2aa090822, type: 3}
   abilityTag: 3
   synergyRequirement: {fileID: 0}
