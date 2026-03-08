@@ -365,11 +365,15 @@ MonoBehaviour:
   currentHealth: 0
   attack: 0
   defense: 0
+  shield: 0
+  data: {fileID: 11400000, guid: e6275c3e144bdc545a70ad7b7f22f62b, type: 2}
+  bossData: {fileID: 0}
+  plateArmor: {fileID: 0}
   animator: {fileID: 2873913708307952732}
   healthBarSlider: {fileID: 3805404166429523023}
   equippedAbilities: []
   bonusAbility: {fileID: 0}
-  data: {fileID: 11400000, guid: e6275c3e144bdc545a70ad7b7f22f62b, type: 2}
+  needReset: 0
 --- !u!1 &995518099954845671
 GameObject:
   m_ObjectHideFlags: 0
@@ -6078,6 +6082,10 @@ PrefabInstance:
     - target: {fileID: 3770157874761414861, guid: 755db51bc9bc5be4f921f27ac953237d, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016940709547976997, guid: 755db51bc9bc5be4f921f27ac953237d, type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5157986007994113309, guid: 755db51bc9bc5be4f921f27ac953237d, type: 3}
       propertyPath: m_Name
