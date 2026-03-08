@@ -25,6 +25,8 @@ namespace BoardAgain.Battle
                 string description = "";
                 if (ability is DamageAbility dmg) description = dmg.GetRuntimeDescription(caster);
                 else if (ability is HealingAbility heal) description = heal.GetRuntimeDescription(caster);
+                else if (ability is BuffAbility buff) description = buff.GetRuntimeDescription(caster);
+                else if(ability is BlockAbility block) description = block.GetRuntimeDescription(caster);
                 else description = ability.abilityDescription;
 
                 manager.ShowTooltip(description, transform.position);
@@ -34,6 +36,17 @@ namespace BoardAgain.Battle
         public void OnPointerExit(PointerEventData eventData)
         {
             manager.HideTooltip();
+        }
+        private void OnDisable()
+        {
+            if (manager != null)
+                manager.HideTooltip();
+        }
+
+        private void OnDestroy()
+        {
+            if (manager != null)
+                manager.HideTooltip();
         }
     }
 }
