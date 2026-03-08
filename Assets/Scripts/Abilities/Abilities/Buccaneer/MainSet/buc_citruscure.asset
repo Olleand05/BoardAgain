@@ -19,4 +19,4 @@ MonoBehaviour:
   synergyRequirement: {fileID: 0}
   isBonusOnly: 0
   minHealing: 10
-  maxHealing: 40
+  maxHealing: 30
